@@ -19,7 +19,7 @@ mobilemoney_value_data$mobilemoney_cashin <- as.character(mobilemoney_value_data
 mobilemoney_value_data$mobilemoney_cashout <- as.character(mobilemoney_value_data$mobilemoney_cashout)
 
 
-## Create function to calculate value for mobile money transfers fees for each scenario ####
+## Create function to calculate value for mobile money transfers fees for an amount ####
 
 momo_value_for_money <- function(Amountin = x){
   mobilemoney_value_data$Amountin <- Amountin
@@ -109,14 +109,15 @@ value_for_money_data <- mutate(value_for_money_data, ID = case_when(value_for_mo
                                               value_for_money_data$label == "MTN Momo to MTN Momo" ~ "TRUE3",
                                               value_for_money_data$label != c("Vodafone Cash to Vodafone Cash", "Airtel Money to Airtel Money", "Tigo Cash to Tigo Cash", "MTN Momo to MTN Momo") ~ "FALSE"))
 
-ggplot(value_for_money_data, aes(x =reorder(label, Amountout))) + 
+ggplot(value_for_money_data, aes(x = reorder(label, Amountout))) + 
   geom_bar(aes(weight = Amountout, fill = ID)) + 
   coord_flip() + 
   geom_text(aes(y = Amountout, label = Amountout, hjust = 1.5), size = 10) +
   labs(title = "What is the value for Mobile Money way of transfering GHc10 \n across Networks with the introduction of Interopability?",
-          subtitle = "How much will the receiver actually get when (s)he cashes out?", 
+          subtitle = "How much will the receiver actually get when (s)he makes a withdrawal?", 
        caption = "By: David Quartey (@DaveQuartey)          \n Source: BoG, MTN, Tigo, Vodafone, Airtel\n Date: 14/05/2018                                      \n") +
-  ylab("Amount Out (GHc)") + xlab("Mobile Money Service") + 
+  ylab("Amount Out (GHc)") + 
+  xlab("Mobile Money Service") + 
   theme(title = element_text(size = 15), 
         axis.title.x = element_text(size = 15),
         axis.title.y = element_text(size = 15), 
@@ -149,9 +150,10 @@ ggplot(value_for_money_data, aes(x =reorder(label, Amountout))) +
   coord_flip() + 
   geom_text(aes(y = Amountout, label = Amountout, hjust = 1.5), size = 10) +
   labs(title = "What is the value for Mobile Money way of transfering GHc1, 000 \n across Networks with the introduction of Interopability?",
-       subtitle = "How much will the receiver actually get when (s)he cashes out?", 
+       subtitle = "How much will the receiver actually get when (s)he makes a withdrawal?", 
        caption = "By: David Quartey (@DaveQuartey)          \n Source: BoG, MTN, Tigo, Vodafone, Airtel\n Date: 14/05/2018                                      \n") +
-  ylab("Amount Out (GHc)") + xlab("Mobile Money Service") + 
+  ylab("Amount Out (GHc)") + 
+  xlab("Mobile Money Service") + 
   theme(title = element_text(size = 15), 
         axis.title = element_text(size = 15), 
         axis.text = element_text(size = 15),
