@@ -4,24 +4,25 @@ library(ggplot2)
 library(ggrepel)
 library(scales)
 
-### Create Data Frame ####
-mobilemoney_value_data <- data.frame(
-  mobilemoney_cashin = rep(c("MTN Momo", "Vodafone Cash", "Airtel Money", "Tigo Cash"), c(4, 4, 4, 4)),
-  mobilemoney_cashout = rep(c("MTN Momo", "Vodafone Cash", "Airtel Money", "Tigo Cash"), 4),
-  cashin_fee = rep(0, 16),
-  transaction_fee = rep(0, 16),
-  cashout_fee = rep(0, 16),
-  Amountin = rep(0, 16), 
-  Amountout = rep(0, 16))
-
-# Change columns from factors to characters
-mobilemoney_value_data$mobilemoney_cashin <- as.character(mobilemoney_value_data$mobilemoney_cashin)
-mobilemoney_value_data$mobilemoney_cashout <- as.character(mobilemoney_value_data$mobilemoney_cashout)
-
-
 ## Create function to calculate value for mobile money transfers fees for an amount ####
 
 momo_value_for_money <- function(Amountin = x){
+  
+  ### Create Data Frame ####
+  mobilemoney_value_data <- data.frame(
+    mobilemoney_cashin = rep(c("MTN Momo", "Vodafone Cash", "Airtel Money", "Tigo Cash"), c(4, 4, 4, 4)),
+    mobilemoney_cashout = rep(c("MTN Momo", "Vodafone Cash", "Airtel Money", "Tigo Cash"), 4),
+    cashin_fee = rep(0, 16),
+    transaction_fee = rep(0, 16),
+    cashout_fee = rep(0, 16),
+    Amountin = rep(0, 16), 
+    Amountout = rep(0, 16))
+  
+  # Change columns from factors to characters
+  mobilemoney_value_data$mobilemoney_cashin <- as.character(mobilemoney_value_data$mobilemoney_cashin)
+  mobilemoney_value_data$mobilemoney_cashout <- as.character(mobilemoney_value_data$mobilemoney_cashout)
+  
+  
   mobilemoney_value_data$Amountin <- Amountin
   
   ## Cashin Fee ####
@@ -91,75 +92,55 @@ mobilemoney_value_data$Amountout <- mobilemoney_value_data$Amountin - mobilemone
 # Create labels for each mobile money combination
 mobilemoney_value_data$label <- paste(mobilemoney_value_data$mobilemoney_cashin, "to", mobilemoney_value_data$mobilemoney_cashout)
   
-return(mobilemoney_value_data)
-  }
-
-
-## Is my Momo Transfer Value for Money? Lets see
-
-# GHC 10.00
-value_for_money_data <- momo_value_for_money(Amountin = 10)
 
 
 ## Plot value for mobile money of 10 cedis results ####
 
-value_for_money_data <- mutate(value_for_money_data, ID = case_when(value_for_money_data$label == "Vodafone Cash to Vodafone Cash" ~ "TRUE",
-                                              value_for_money_data$label == "Airtel Money to Airtel Money" ~ "TRUE1", 
-                                              value_for_money_data$label == "Tigo Cash to Tigo Cash" ~ "TRUE2", 
-                                              value_for_money_data$label == "MTN Momo to MTN Momo" ~ "TRUE3",
-                                              value_for_money_data$label != c("Vodafone Cash to Vodafone Cash", "Airtel Money to Airtel Money", "Tigo Cash to Tigo Cash", "MTN Momo to MTN Momo") ~ "FALSE"))
+mobilemoney_value_data <- mutate(mobilemoney_value_data, ID = case_when(mobilemoney_value_data$label == "Vodafone Cash to Vodafone Cash" ~ "TRUE",
+                                                                    mobilemoney_value_data$label == "Airtel Money to Airtel Money" ~ "TRUE1", 
+                                                                    mobilemoney_value_data$label == "Tigo Cash to Tigo Cash" ~ "TRUE2", 
+                                                                    mobilemoney_value_data$label == "MTN Momo to MTN Momo" ~ "TRUE3",
+                                                                    mobilemoney_value_data$label != c("Vodafone Cash to Vodafone Cash", "Airtel Money to Airtel Money", "Tigo Cash to Tigo Cash", "MTN Momo to MTN Momo") ~ "FALSE"))
 
-ggplot(value_for_money_data, aes(x = reorder(label, Amountout))) + 
+
+title <- paste("What is the value for Mobile Money way of transfering", paste0("GHc", Amountin), "\n across Networks with the introduction of Interopability?")
+caption <- paste("By: David Quartey (@DaveQuartey)          \n Source: BoG, MTN, Tigo, Vodafone, Airtel\n Date:", format(as.Date(Sys.Date()), "%d/%m/%Y"),"                                      \n")
+subtitle <- "How much will the receiver actually get when (s)he makes a withdrawal?"
+
+
+plot <- ggplot(mobilemoney_value_data, aes(x = reorder(label, Amountout))) + 
   geom_bar(aes(weight = Amountout, fill = ID)) + 
   coord_flip() + 
   geom_text(aes(y = Amountout, label = Amountout, hjust = 1.5), size = 10) +
-  labs(title = "What is the value for Mobile Money way of transfering GHc10 \n across Networks with the introduction of Interopability?",
-          subtitle = "How much will the receiver actually get when (s)he makes a withdrawal?", 
-       caption = "By: David Quartey (@DaveQuartey)          \n Source: BoG, MTN, Tigo, Vodafone, Airtel\n Date: 14/05/2018                                      \n") +
-  ylab("Amount Out (GHc)") + 
+  labs(title = title,
+       subtitle = subtitle, 
+       caption = caption) +
+  ylab("Amount received after withdrawing (GHc)") + 
   xlab("Mobile Money Service") + 
   theme(title = element_text(size = 15), 
         axis.title.x = element_text(size = 15),
         axis.title.y = element_text(size = 15), 
         axis.text = element_text(size = 15),
-        legend.position = "none") +
-  scale_y_continuous(breaks = c(0, 2, 4, 6, 8)) +
-  scale_fill_manual(values = c("TRUE" = "red", 
-                                 "TRUE1" = "firebrick1", 
-                                 "TRUE2" = "blue", 
-                                 "TRUE3" = "gold",
-                               "FALSE" = "gray"))
-
-
-
-## GHc1, 000.00
-
-value_for_money_data <- momo_value_for_money(Amountin = 1000)
-
-
-## Plot value for mobile money of 1000 cedis results ####
-
-value_for_money_data <- mutate(value_for_money_data, ID = case_when(value_for_money_data$label == "Vodafone Cash to Vodafone Cash" ~ "TRUE",
-                                                                    value_for_money_data$label == "Airtel Money to Airtel Money" ~ "TRUE1", 
-                                                                    value_for_money_data$label == "Tigo Cash to Tigo Cash" ~ "TRUE2", 
-                                                                    value_for_money_data$label == "MTN Momo to MTN Momo" ~ "TRUE3",
-                                                                    value_for_money_data$label != c("Vodafone Cash to Vodafone Cash", "Airtel Money to Airtel Money", "Tigo Cash to Tigo Cash", "MTN Momo to MTN Momo") ~ "FALSE"))
-
-ggplot(value_for_money_data, aes(x =reorder(label, Amountout))) + 
-  geom_bar(aes(weight = Amountout, fill = ID)) + 
-  coord_flip() + 
-  geom_text(aes(y = Amountout, label = Amountout, hjust = 1.5), size = 10) +
-  labs(title = "What is the value for Mobile Money way of transfering GHc1, 000 \n across Networks with the introduction of Interopability?",
-       subtitle = "How much will the receiver actually get when (s)he makes a withdrawal?", 
-       caption = "By: David Quartey (@DaveQuartey)          \n Source: BoG, MTN, Tigo, Vodafone, Airtel\n Date: 14/05/2018                                      \n") +
-  ylab("Amount Out (GHc)") + 
-  xlab("Mobile Money Service") + 
-  theme(title = element_text(size = 15), 
-        axis.title = element_text(size = 15), 
-        axis.text = element_text(size = 15),
-        legend.position = "none") +
+        legend.position = "none",
+        axis.ticks = element_blank(),
+        axis.text.x = element_blank()) +
   scale_fill_manual(values = c("TRUE" = "red", 
                                "TRUE1" = "firebrick1", 
                                "TRUE2" = "blue", 
                                "TRUE3" = "gold",
                                "FALSE" = "gray"))
+### Return plot
+return(plot)
+
+
+
+}
+
+
+
+
+#### Plot value for mobile money of 10 cedis results ####
+momo_value_for_money(Amountin = 10)
+
+## Plot value for mobile money of 1000 cedis results ####
+momo_value_for_money(Amountin = 1000)
