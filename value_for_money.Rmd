@@ -1,0 +1,871 @@
+---
+title: "Mobile Money Value for Money"
+author: "David Quartey"
+date: "September 28, 2018"
+output:
+  word_document: default
+  html_document:
+    keep_md: TRUE
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  fig.path = "Visualizations/Viz-"
+)
+
+
+library(ggplot2)
+library(magrittr)
+library(purrr)
+library(dplyr)
+
+
+
+
+momo_value_for_money <- function(network_from, network_to , initial_amount){ # Accept inputs about 
+  
+# Aims of function
+  # columns for network combination - Done
+  # columns for amount obtained after withdrawing - Done
+    # Where I left off: Check new tariffs for same network transactions - Done
+    # Check MTN Tariffs - Done
+  # Change 0 - 50 to 1 - 50 - Done
+  # Obtain airteltigo to airteltigo rates to do airteltigo section in transaction (withdrawal section that of MTN so have to do too) - Done
+  # Check MTN to another network rates - Done
+  # Update Vodafobe to Vodafone charges with new info found on website - saved in mobile money folder - Done
+  # Create table of price ranges and interoperability charges for each telco - Add new Vodafone charges & add range accross all to accomodate all
+  # Add < 50 which can handle less than 1 initial amounts
+  
+  
+  #### TRANSFER STARTS FROM HERE ####
+  
+    
+    if(network_from == "Vodafone Cash"){ #### From Vodafone Cash ####
+    if(dplyr::between(initial_amount, 1, 50)){
+      if(network_from == network_to){
+        
+        remaining_amount <- momo_transfer(initial_amount = initial_amount, transaction_fee = 0.5, effect = "flat")
+        
+         
+        
+      } else if(network_from != network_to){
+        remaining_amount <- momo_transfer(initial_amount = initial_amount, transaction_fee = 0.5, effect = "flat")
+         
+      }
+      
+      
+    }
+      
+      if(dplyr::between(initial_amount, 50.1, 75)){
+        if(network_from == network_to){
+          
+          remaining_amount <- momo_transfer(initial_amount = initial_amount, transaction_fee = 0.75, effect = "flat")
+          
+          
+          
+        } else if(network_from != network_to){
+          
+          remaining_amount <- momo_transfer(initial_amount = initial_amount, transaction_fee = 1.5, effect = "percentage")
+          
+          
+        }
+        
+      }
+      
+    if(dplyr::between(initial_amount, 75.1, 100)){
+      if(network_from == network_to){
+        
+        remaining_amount <- momo_transfer(initial_amount = initial_amount, transaction_fee = 1, effect = "flat")
+         
+        
+        
+      } else if(network_from != network_to){
+        
+        remaining_amount <- momo_transfer(initial_amount = initial_amount, transaction_fee = 1.5, effect = "percentage")
+         
+        
+      }
+        
+    } 
+    
+    if(dplyr::between(initial_amount, 100.1, 250)){
+        if(network_from == network_to){
+          
+          remaining_amount <- momo_transfer(initial_amount = initial_amount, transaction_fee = 1.5, effect = "flat")
+           
+          
+          
+        } else if(network_from != network_to){
+          
+          remaining_amount <- momo_transfer(initial_amount = initial_amount, transaction_fee = 1.5, effect = "percentage")
+           
+          
+        }
+        
+    }
+      
+    if(dplyr::between(initial_amount, 250.1, 500)){
+        if(network_from == network_to){
+          
+          remaining_amount <- momo_transfer(initial_amount = initial_amount, transaction_fee = 2.0, effect = "flat")
+           
+          
+          
+        } else if(network_from != network_to){
+          
+          remaining_amount <- momo_transfer(initial_amount = initial_amount, transaction_fee = 1.5, effect = "percentage")
+           
+          
+        }
+        
+      }
+      
+    if(dplyr::between(initial_amount, 500.1, 1000)){
+        if(network_from == network_to){
+          
+          remaining_amount <- momo_transfer(initial_amount = initial_amount, transaction_fee = 2.50, effect = "flat")
+           
+          
+          
+        } else if(network_from != network_to){
+          
+          remaining_amount <- momo_transfer(initial_amount = initial_amount, transaction_fee = 1.5, effect = "percentage")
+           
+          
+        }
+        
+      }
+      
+    }
+  
+    if(network_from == "AirtelTigo Money"){ #### From AirtelTigo ####
+      if(dplyr::between(initial_amount, 1, 50)){
+        if(network_from == network_to){
+          
+          remaining_amount <- momo_transfer(initial_amount = initial_amount, transaction_fee = 0.5, effect = "flat")
+           
+          
+        } else if(network_from != network_to){
+          remaining_amount <- momo_transfer(initial_amount = initial_amount, transaction_fee = 0.75, effect = "flat")
+           
+        }
+        
+        
+      }
+      
+      if(dplyr::between(initial_amount, 50.1, 100)){
+        if(network_from == network_to){
+          
+          remaining_amount <- momo_transfer(initial_amount = initial_amount, transaction_fee = 1.0, effect = "flat")
+           
+          
+          
+        } else if(network_from != network_to){
+          
+          remaining_amount <- momo_transfer(initial_amount = initial_amount, transaction_fee = 1.5, effect = "percentage")
+           
+          
+        }
+        
+      } 
+      
+      if(dplyr::between(initial_amount, 100.1, 250)){
+        if(network_from == network_to){
+          
+          remaining_amount <- momo_transfer(initial_amount = initial_amount, transaction_fee = 1.5, effect = "flat")
+           
+          
+          
+        } else if(network_from != network_to){
+          
+          remaining_amount <- momo_transfer(initial_amount = initial_amount, transaction_fee = 1.5, effect = "percentage")
+           
+          
+        }
+        
+      }
+      
+      if(dplyr::between(initial_amount, 250.1, 500)){
+        if(network_from == network_to){
+          
+          remaining_amount <- momo_transfer(initial_amount = initial_amount, transaction_fee = 2.0, effect = "flat")
+           
+          
+          
+        } else if(network_from != network_to){
+          
+          remaining_amount <- momo_transfer(initial_amount = initial_amount, transaction_fee = 1.5, effect = "percentage")
+           
+          
+        }
+        
+      }
+      
+      if(dplyr::between(initial_amount, 500.1, 1000)){
+        if(network_from == network_to){
+          
+          remaining_amount <- momo_transfer(initial_amount = initial_amount, transaction_fee = 2.50, effect = "flat")
+           
+          
+          
+        } else if(network_from != network_to){
+          
+          remaining_amount <- momo_transfer(initial_amount = initial_amount, transaction_fee = 1.5, effect = "percentage")
+           
+          
+        }
+        
+      }
+    
+    
+    }
+  
+    if(network_from == "MTN Momo"){ #### From MTN Momo ####
+      if(dplyr::between(initial_amount, 1, 50)){
+        
+        if(network_from == network_to){
+          
+          remaining_amount <- momo_transfer(initial_amount = initial_amount, transaction_fee = 0.5, effect = "flat")
+           
+          
+        } else if(network_from != network_to){
+          remaining_amount <- momo_transfer(initial_amount = initial_amount, transaction_fee = 0.75, effect = "flat")
+           
+        }
+        
+        
+      }
+      
+      if(dplyr::between(initial_amount, 50.1, 100)){
+        if(network_from == network_to){
+          
+          remaining_amount <- momo_transfer(initial_amount = initial_amount, transaction_fee = 1, effect = "percentage")
+           
+          
+          
+        } else if(network_from != network_to){
+          
+          remaining_amount <- momo_transfer(initial_amount = initial_amount, transaction_fee = 1.5, effect = "percentage")
+           
+          
+        }
+        
+      } 
+      
+      if(dplyr::between(initial_amount, 100.1, 250)){
+        
+        if(network_from == network_to){
+          
+          remaining_amount <- momo_transfer(initial_amount = initial_amount, transaction_fee = 1, effect = "percentage")
+           
+          
+          
+        } else if(network_from != network_to){
+          
+          remaining_amount <- momo_transfer(initial_amount = initial_amount, transaction_fee = 1.5, effect = "percentage")
+          
+        }
+        
+      }
+      
+      if(dplyr::between(initial_amount, 250.1, 500)){
+        if(network_from == network_to){
+          
+          remaining_amount <- momo_transfer(initial_amount = initial_amount, transaction_fee = 1, effect = "percentage")
+           
+          
+          
+        } else if(network_from != network_to){
+          
+          remaining_amount <- momo_transfer(initial_amount = initial_amount, transaction_fee = 1.5, effect = "percentage")
+           
+          
+        }
+        
+      }
+      
+      if(dplyr::between(initial_amount, 500.1, 1000)){
+        if(network_from == network_to){
+          
+          remaining_amount <- momo_transfer(initial_amount = initial_amount, transaction_fee = 1, effect = "percentage")
+           
+          
+          
+        } else if(network_from != network_to){
+          
+          remaining_amount <- momo_transfer(initial_amount = initial_amount, transaction_fee = 1.5, effect = "percentage")
+           
+          
+        }
+        
+      }
+    
+    
+    }
+  
+  
+  
+  
+  
+#### WITHDRAWAL STARTS FROM HERE ####
+  
+  if(network_to == "Vodafone Cash"){ #### To Vodafone
+    if(dplyr::between(remaining_amount, 1, 50)){
+      
+        withdrawn_amount <- momo_withdrawal(remaining_amount = remaining_amount, withdrawal_fee = 0.5, effect = "flat")
+        return(data.frame(Mobile_Money_Service = paste(network_from, "to", network_to), withdrawn_amount = withdrawn_amount, stringsAsFactors = FALSE))
+    
+      
+    }
+    
+    
+    if(dplyr::between(remaining_amount, 50.1, 100)){
+      
+      withdrawn_amount <- momo_withdrawal(remaining_amount = remaining_amount, withdrawal_fee = 1.5, effect = "flat")
+      return(data.frame(Mobile_Money_Service = paste(network_from, "to", network_to), withdrawn_amount = withdrawn_amount, stringsAsFactors = FALSE))
+      
+    } 
+    
+    if(dplyr::between(remaining_amount, 100.1, 250)){
+      
+      withdrawn_amount <- momo_withdrawal(remaining_amount = remaining_amount, withdrawal_fee = 2.5, effect = "flat")
+      return(data.frame(Mobile_Money_Service = paste(network_from, "to", network_to), withdrawn_amount = withdrawn_amount, stringsAsFactors = FALSE))
+      
+    }
+    
+    if(dplyr::between(remaining_amount, 250.1, 500)){
+      
+      withdrawn_amount <- momo_withdrawal(remaining_amount = remaining_amount, withdrawal_fee = 4.0, effect = "flat")
+      return(data.frame(Mobile_Money_Service = paste(network_from, "to", network_to), withdrawn_amount = withdrawn_amount, stringsAsFactors = FALSE))
+      
+    }
+    
+    if(dplyr::between(remaining_amount, 500.1, 1000)){
+      
+      withdrawn_amount <- momo_withdrawal(remaining_amount = remaining_amount, withdrawal_fee = 6.0, effect = "flat")
+      return(data.frame(Mobile_Money_Service = paste(network_from, "to", network_to), withdrawn_amount = withdrawn_amount, stringsAsFactors = FALSE))
+      
+    }
+    
+    
+  }
+  
+  
+  
+  if(network_to == "AirtelTigo Money"){ #### To AirtelTigo
+    if(dplyr::between(remaining_amount, 1, 50)){
+      
+      withdrawn_amount <- momo_withdrawal(remaining_amount = remaining_amount, withdrawal_fee = 0.5, effect = "flat")
+      return(data.frame(Mobile_Money_Service = paste(network_from, "to", network_to), withdrawn_amount = withdrawn_amount, stringsAsFactors = FALSE))
+      
+      
+    }
+    
+    
+    if(dplyr::between(remaining_amount, 50.1, 100)){
+      
+      withdrawn_amount <- momo_withdrawal(remaining_amount = remaining_amount, withdrawal_fee = 1, effect = "flat")
+      return(data.frame(Mobile_Money_Service = paste(network_from, "to", network_to), withdrawn_amount = withdrawn_amount, stringsAsFactors = FALSE))
+      
+    } 
+    
+    if(dplyr::between(remaining_amount, 100.1, 250)){
+      
+      withdrawn_amount <- momo_withdrawal(remaining_amount = remaining_amount, withdrawal_fee = 1.50, effect = "flat")
+      return(data.frame(Mobile_Money_Service = paste(network_from, "to", network_to), withdrawn_amount = withdrawn_amount, stringsAsFactors = FALSE))
+      
+    }
+    
+    if(dplyr::between(remaining_amount, 250.1, 500)){
+      
+      withdrawn_amount <- momo_withdrawal(remaining_amount = remaining_amount, withdrawal_fee = 2.00, effect = "flat")
+      return(data.frame(Mobile_Money_Service = paste(network_from, "to", network_to), withdrawn_amount = withdrawn_amount, stringsAsFactors = FALSE))
+      
+    }
+    
+    if(dplyr::between(remaining_amount, 500.1, 1000)){
+      
+      withdrawn_amount <- momo_withdrawal(remaining_amount = remaining_amount, withdrawal_fee = 2.50, effect = "flat")
+      return(data.frame(Mobile_Money_Service = paste(network_from, "to", network_to), withdrawn_amount = withdrawn_amount, stringsAsFactors = FALSE))
+      
+    }
+    
+    
+  }
+  
+  
+  if(network_to == "MTN Momo"){ #### To MTN Momo
+    if(dplyr::between(remaining_amount, 1, 50)){
+      
+      withdrawn_amount <- momo_withdrawal(remaining_amount = remaining_amount, withdrawal_fee = 0.5, effect = "flat")
+      return(data.frame(Mobile_Money_Service = paste(network_from, "to", network_to), withdrawn_amount = withdrawn_amount, stringsAsFactors = FALSE))
+      
+      
+    }
+    
+    
+    if(dplyr::between(remaining_amount, 50.1, 100)){
+      
+      withdrawn_amount <- momo_withdrawal(remaining_amount = remaining_amount, withdrawal_fee = 1, effect = "percentage")
+      return(data.frame(Mobile_Money_Service = paste(network_from, "to", network_to), withdrawn_amount = withdrawn_amount, stringsAsFactors = FALSE))
+      
+    } 
+    
+    if(dplyr::between(remaining_amount, 100.1, 250)){
+      
+      withdrawn_amount <- momo_withdrawal(remaining_amount = remaining_amount, withdrawal_fee = 1, effect = "percentage")
+      return(data.frame(Mobile_Money_Service = paste(network_from, "to", network_to), withdrawn_amount = withdrawn_amount, stringsAsFactors = FALSE))
+      
+    }
+    
+    if(dplyr::between(remaining_amount, 250.1, 500)){
+      
+      withdrawn_amount <- momo_withdrawal(remaining_amount = remaining_amount, withdrawal_fee = 1, effect = "percentage")
+      return(data.frame(Mobile_Money_Service = paste(network_from, "to", network_to), withdrawn_amount = withdrawn_amount, stringsAsFactors = FALSE))
+      
+    }
+    
+    if(dplyr::between(remaining_amount, 500.1, 1000)){
+      
+      withdrawn_amount <- momo_withdrawal(remaining_amount = remaining_amount, withdrawal_fee = 1, effect = "percentage")
+      return(data.frame(Mobile_Money_Service = paste(network_from, "to", network_to), withdrawn_amount = withdrawn_amount, stringsAsFactors = FALSE))
+      
+      return(data.frame(Mobile_Money_Service = paste(network_from, "to", network_to), withdrawn_amount = withdrawn_amount, stringsAsFactors = FALSE))
+      
+      
+    }
+    
+    
+  }
+  
+
+    
+    
+}
+
+
+momo_transfer <- function(initial_amount, transaction_fee , effect = c("flat", "percentage")){
+    
+    if(effect == "percentage"){
+    
+    transaction_fee <- transaction_fee/100
+    
+    amount_after_transaction <- initial_amount - (initial_amount * transaction_fee)
+    
+    return(amount_after_transaction)
+    
+    
+    } else if(effect == "flat"){
+      
+      transaction_fee <- transaction_fee
+      
+      amount_after_transaction <- initial_amount - transaction_fee
+      
+      return(amount_after_transaction)
+      
+    }
+    
+  
+}
+
+
+momo_withdrawal <- function(remaining_amount, withdrawal_fee , effect = c("flat", "percentage")){
+  
+  if(effect == "percentage"){
+    
+    withdrawal_fee <- withdrawal_fee/100
+    
+    amount_after_withdrawal <- remaining_amount - (remaining_amount * withdrawal_fee)
+    
+    return(amount_after_withdrawal)
+    
+    
+  } else if(effect == "flat"){
+    
+    withdrawal_fee <- withdrawal_fee
+    
+    amount_after_withdrawal <- remaining_amount - withdrawal_fee
+    
+    return(amount_after_withdrawal)
+    
+  }
+  
+  
+}
+
+
+
+```
+
+# How Mobile Money Interoperability in Ghana affects fees Mobile Money Users Pay: Telco Price Analysis
+
+On 10^th^ May 2018, Mobile Money Interoperability was officially [launched](https://www.myjoyonline.com/business/2018/May-10th/bawumia-launches-mobile-money-payment-interoperability-system.php) in Ghana. This means that you can now transfer mobile money across networks at a fee.
+
+I wrote part of this piece a few days after the launch because interoperability brought up some interesting questions for me. Since then, significant things have happened within the space which meant I've had to re-analyse some portions. Transactions have gone from close to [3000](https://citinewsroom.com/2018/05/15/mobile-money-interoperability-scored-3000-transactions-on-first-day-ghipss/) on the first day. By end of August it had reach [800, 000 transactions](https://www.modernghana.com/news/882509/mobile-money-interoperability-hits-800000-transactions-re.html). Most importantly though, since then [AirtelTigo merged](http://www.airteltigo.com.gh/airteltigo-outlines-plans-for-mobile-financial-service-sector/) their mobile money platform.
+
+Some interesting questions this brought up for me at the time of the launch include, say a mobile money user wants to make a transaction, after factoring in cash in fees (if any), transfer fees, and the cash out fees, what is the final amount withdrawn? Or put another way, what 2 combination of networks allows the receiver to cash out at least cost in terms of fees? 
+
+Given that mobile money users can switch to any network since the market is not fragmented anymore, how competitive are Interoperable transaction options to same network transactions? 
+
+What does interoperability mean for low-income people who typically send small amounts?
+
+I find out this and more in this article.
+
+
+```{r 10 cedis transfer, fig.align="center", fig.width=7, echo=FALSE}
+
+initial_amount <- 10
+
+
+across_network_permutations <- gtools::permutations(n = 3, r = 2, v = c("Vodafone Cash", "MTN Momo", "AirtelTigo Money")) %>% 
+  data.frame(stringsAsFactors = F) %>% 
+  dplyr::rename(network_from = X1, network_to = X2)
+
+same_network_permutations <- data.frame(network_from = c("Vodafone Cash", "MTN Momo", "AirtelTigo Money"), network_to = c("Vodafone Cash", "MTN Momo", "AirtelTigo Money"), stringsAsFactors = FALSE)
+
+all_network_permutations <- dplyr::bind_rows(across_network_permutations, same_network_permutations) %>% 
+  data.frame(initial_amount = rep(initial_amount, nrow(.))) %>% 
+  purrr::pmap_df(momo_value_for_money)
+  
+# Plot for amount paid in fees
+ all_network_permutations %>% 
+  ggplot(aes(x = forcats::fct_reorder(Mobile_Money_Service, withdrawn_amount))) + 
+    geom_bar(aes(weight = initial_amount - withdrawn_amount, fill = Mobile_Money_Service)) + 
+   coord_flip() + 
+   scale_fill_manual(
+     values = c("Vodafone Cash to Vodafone Cash" = "firebrick4",
+                "Vodafone Cash to MTN Momo" = "dimgrey",
+                "Vodafone Cash to AirtelTigo Money" = "dimgrey",
+                "MTN Momo to Vodafone Cash" = "dimgrey",
+                "MTN Momo to MTN Momo" = "goldenrod1",
+                "MTN Momo to AirtelTigo Money" = "dimgrey",
+                "AirtelTigo Money to Vodafone Cash" = "dimgrey",
+                "AirtelTigo Money to MTN Momo" = "dimgrey",
+                "AirtelTigo Money to AirtelTigo Money" = "red")
+   ) + 
+   theme_minimal() + 
+   labs(x = "Mobile Money Service", y = "Amount Paid in Fees (GHc)", title = glue::glue("How much will be paid in fees if GHc{initial_amount} is transfered?"), caption = "By: David Quartey (@DaveQuartey)\nSource: AirtelTigo, MTN, Vodafone") + 
+   theme(legend.position = "none") + 
+   scale_y_continuous(expand = c(0, .011)) + 
+   geom_text(aes(y = (initial_amount - withdrawn_amount), label = (initial_amount - withdrawn_amount)), size = 7, hjust = 1.5)
+
+```
+
+Let's start off with this chart.
+
+To read the chart above, Vodafone Cash to MTN Momo, for example, combines the transfer fee of making a transfer from Vodafone Cash to MTN Momo and the cash out fee of MTN Momo at a particular amount. This gives a sense of how much it costs for that particular network combination. 
+
+This is then extended to all possible network combinations to compare amounts to see what it means for users in fees terms.
+
+At GHc10 for instance, interoperability has provided a comparatively cheap alternative (Vodafone Cash to either AirtelTigo Money or MTN Momo) of sending such a low amount at GHC1 considering the fact that previously, exactly the same amount through the voucher system would have likely cost more.
+
+Either way, one thing that strikes me is how fees alternate. Either you pay GHc1 or GHc1.25.
+
+Is it the same at larger amounts?
+
+```{r 1000 cedis transfer, fig.align="center", fig.width=7, echo=FALSE}
+
+initial_amount <- 1000
+
+
+across_network_permutations <- gtools::permutations(n = 3, r = 2, v = c("Vodafone Cash", "MTN Momo", "AirtelTigo Money")) %>% 
+  data.frame(stringsAsFactors = F) %>% 
+  dplyr::rename(network_from = X1, network_to = X2)
+
+same_network_permutations <- data.frame(network_from = c("Vodafone Cash", "MTN Momo", "AirtelTigo Money"), network_to = c("Vodafone Cash", "MTN Momo", "AirtelTigo Money"), stringsAsFactors = FALSE)
+
+all_network_permutations <- dplyr::bind_rows(across_network_permutations, same_network_permutations) %>% 
+  data.frame(initial_amount = rep(initial_amount, nrow(.))) %>% 
+  purrr::pmap_df(momo_value_for_money)
+  
+# Plot for amount paid in fees
+ all_network_permutations %>% 
+  ggplot(aes(x = forcats::fct_reorder(Mobile_Money_Service, withdrawn_amount))) + 
+    geom_bar(aes(weight = initial_amount - withdrawn_amount, fill = Mobile_Money_Service)) + 
+   coord_flip() + 
+   scale_fill_manual(
+     values = c("Vodafone Cash to Vodafone Cash" = "firebrick4",
+                "Vodafone Cash to MTN Momo" = "dimgrey",
+                "Vodafone Cash to AirtelTigo Money" = "dimgrey",
+                "MTN Momo to Vodafone Cash" = "dimgrey",
+                "MTN Momo to MTN Momo" = "goldenrod1",
+                "MTN Momo to AirtelTigo Money" = "dimgrey",
+                "AirtelTigo Money to Vodafone Cash" = "dimgrey",
+                "AirtelTigo Money to MTN Momo" = "dimgrey",
+                "AirtelTigo Money to AirtelTigo Money" = "red")
+   ) + 
+   theme_minimal() + 
+   labs(x = "Mobile Money Service", y = "Amount Paid in Fees (GHc)", title = glue::glue("How much will be paid in fees if GHc{initial_amount} is transfered?"), caption = "By: David Quartey (@DaveQuartey)\nSource: AirtelTigo, MTN, Vodafone") + 
+   theme(legend.position = "none") + 
+   scale_y_continuous(expand = c(0, .011)) + 
+   geom_text(aes(y = (initial_amount - withdrawn_amount), label = (initial_amount - withdrawn_amount)), size = 7, hjust = 1.5)
+```
+
+Suddenly, things look a little... different. An incredible 0.5% of GHc 1000 is paid in fees when using AirtelTigo to AirtelTigo (seems like Tigo's Cash rates are being used after the Airtel / Tigo merger for same network transfers).
+
+Just so we see how over a period these fees divergence, lets looks at this scenario: Imagine a mobile money user has to transfer GHC1000 to a friend ones every month for the next 12months. Imagine again whatever combination she uses is consistent across the 12months, how much different will the total amount of fees be by the 12th month?
+```{r cummulative 1000 cedis transfer, fig.align="center", fig.height=8, fig.width=8, echo=FALSE, message=FALSE}
+
+initial_amount <- 1000
+
+all_network_permutations <- dplyr::bind_rows(across_network_permutations, same_network_permutations) %>% 
+    data.frame(initial_amount = rep(initial_amount, nrow(.))) %>% 
+    purrr::pmap_df(momo_value_for_money)
+  
+ cum_fees_ends <-  all_network_permutations %>% 
+    dplyr::mutate(fees_paid =initial_amount - withdrawn_amount) %>% 
+    split(.$Mobile_Money_Service) %>% 
+    purrr::map(.f = ~purrr::map(.x, ~rep(.x, 12))) %>% 
+    purrr::map(dplyr::as_data_frame) %>%
+    dplyr::bind_rows() %>% 
+    dplyr::group_by(Mobile_Money_Service) %>% 
+    dplyr::mutate(cum_fees_paid = cumsum(fees_paid), n = 1:12) %>%
+    dplyr::group_by(Mobile_Money_Service) %>% 
+    dplyr::top_n(n = 1) %>% 
+    dplyr::pull(cum_fees_paid)
+  
+  all_network_permutations %>% 
+    dplyr::mutate(withdrawn_amount =initial_amount - withdrawn_amount) %>% 
+    split(.$Mobile_Money_Service) %>% 
+    purrr::map(.f = ~purrr::map(.x, ~rep(.x, 12))) %>% 
+    purrr::map(dplyr::as_data_frame) %>%
+    dplyr::bind_rows() %>% 
+    dplyr::group_by(Mobile_Money_Service) %>% 
+    dplyr::mutate(cum_withdrawn_amount = cumsum(withdrawn_amount), n = 1:12) %>% 
+    ggplot(aes(n, cum_withdrawn_amount)) + 
+    geom_line(aes(color = Mobile_Money_Service), size = 1.5, alpha = 0.8) +
+    scale_color_manual(
+      values = c("Vodafone Cash to Vodafone Cash" = "firebrick4",
+                 "Vodafone Cash to MTN Momo" = "dimgrey",
+                 "Vodafone Cash to AirtelTigo Money" = "dimgrey",
+                 "MTN Momo to Vodafone Cash" = "dimgrey",
+                 "MTN Momo to MTN Momo" = "goldenrod1",
+                 "MTN Momo to AirtelTigo Money" = "dimgrey",
+                 "AirtelTigo Money to Vodafone Cash" = "dimgrey",
+                 "AirtelTigo Money to MTN Momo" = "dimgrey",
+                 "AirtelTigo Money to AirtelTigo Money" = "red")
+      ) + 
+    theme_minimal() + 
+    theme(legend.position = "none") +
+    scale_x_continuous(expand = c(0, 0)) +
+    scale_y_continuous(sec.axis = sec_axis( ~.,breaks = cum_fees_ends)) +
+    ggtitle(label = glue::glue("How much is paid in fees across each Mobile Money Service pair, if we sent GHc{initial_amount}?")) +
+    labs(x = "Number of months", y = "Cummulative Mobile Money Fees", caption = "By: David Quartey (@DaveQuartey)\nSource: AirtelTigo, MTN, Vodafone")
+  
+```
+
+It's incredible, isn't it? 
+
+She'd have paid between GHc60 to GHc300 in fees after sending GHc12, 000 to her friend over the 12 months period using mobile money on her phone. What's interesting is the variety of options available at a higher amount. Indeed I found that, as the amount transfered increased, so did the options in terms of fees.
+
+Previously, no token or voucher transfer would have been more cost-effective than a same network transfer. This shows that, this is not true anymore.
+
+Even users of the current market leader (MTN) are now better-off interoperating to AirtelTigo than on same network transfer basis for larger amounts.
+
+However, based purely on other possible network combinations a mobile money user may consider, interoperability has also provided relatively costly alternatives too. As high as GHc25 (2.5% paid in fees in percentage terms). 
+
+Still, it's likely that the pre-interoperability rate for say MTN Momo to an unregistered user would've been 5% (GHc50), compared to the interoperable rate averaging at about 1.9% (GHc19) with the added benefit and convenience of direct transfer into a cross-network wallet.
+
+### Are Mobile Money fees retrogressive in structure?
+
+[Innovations for Poverty Action](https://www.poverty-action.org) (IPA) recently came out with a [study](http://www.cgap.org/blog/how-do-mobile-money-fee-structures-impact-poor) which highlighted the fees paid (cash in and cash out) on 21 mobile money service across 7 countries (Kenya, Uganda, Tanzania, Pakistan, Nigeria, Bangladesh and India). Even though Ghana was not included in their work, they concluded that most had prices which were regressive in **structure** because "the larger a consumers transaction, the less they pay in **percentage terms**" (emphasis mine).
+
+I was curious to know how this translates to Ghana's Telco mobile money prices in terms of structure. 
+```{r average prices, echo=FALSE, fig.align="center", fig.height=9, fig.width=9, warning=FALSE}
+
+across_network_permutations <- gtools::permutations(n = 3, r = 2, v = c("Vodafone Cash", "MTN Momo", "AirtelTigo Money")) %>% 
+   data.frame(stringsAsFactors = F) %>% 
+   dplyr::rename(network_from = X1, network_to = X2)
+ 
+ same_network_permutations <- data.frame(network_from = c("Vodafone Cash", "MTN Momo", "AirtelTigo Money"), network_to = c("Vodafone Cash", "MTN Momo", "AirtelTigo Money"), stringsAsFactors = FALSE)
+ 
+ all_network_permutations <- dplyr::bind_rows(across_network_permutations, same_network_permutations)
+ 
+  number_of_times <- 1000
+  
+upper_fee_boundary <-  all_network_permutations %>% 
+   split(.$network_from) %>% 
+   purrr::map(~purrr::map(.x,.f = ~rep(.x, number_of_times))) %>% # number of times to repeat each column
+   purrr::map(dplyr::as_data_frame) %>% 
+   dplyr::bind_rows() %>% 
+   dplyr::group_by(network_from, network_to) %>% 
+   dplyr::mutate(initial_amount = 1:number_of_times) %>% # Fill each column from 1 to the maximum number
+   purrr::pmap_df(momo_value_for_money) %>% 
+   dplyr::group_by(Mobile_Money_Service) %>% 
+   dplyr::mutate(initial_amount = 2:number_of_times, percentage = (initial_amount - withdrawn_amount)/initial_amount) %>% # Redo this as it starts from 2, must be on
+   dplyr::ungroup() %>% 
+   dplyr::group_by(initial_amount) %>%  
+   dplyr::mutate(highest_percentage = max(percentage), lowest_percentage = min(percentage), mean_percentage = mean(percentage)) %>% 
+   dplyr::filter(initial_amount == 375) %>% 
+   dplyr::pull(highest_percentage) %>% unique()
+
+lower_fee_boundary <-  all_network_permutations %>% 
+  split(.$network_from) %>% 
+  purrr::map(~purrr::map(.x,.f = ~rep(.x, number_of_times))) %>% # number of times to repeat each column
+  purrr::map(dplyr::as_data_frame) %>% 
+  dplyr::bind_rows() %>% 
+  dplyr::group_by(network_from, network_to) %>% 
+  dplyr::mutate(initial_amount = 1:number_of_times) %>% # Fill each column from 1 to the maximum number
+  purrr::pmap_df(momo_value_for_money) %>% 
+  dplyr::group_by(Mobile_Money_Service) %>% 
+  dplyr::mutate(initial_amount = 2:number_of_times, percentage = (initial_amount - withdrawn_amount)/initial_amount) %>% # Redo this as it starts from 2, must be on
+  dplyr::ungroup() %>% 
+  dplyr::group_by(initial_amount) %>%  
+  dplyr::mutate(highest_percentage = max(percentage), lowest_percentage = min(percentage), mean_percentage = mean(percentage)) %>% 
+  dplyr::filter(initial_amount == 375) %>% 
+  dplyr::pull(lowest_percentage) %>% unique()
+   
+ 
+ all_network_permutations %>% 
+   split(.$network_from) %>% 
+   purrr::map(~purrr::map(.x,.f = ~rep(.x, number_of_times))) %>% # number of times to repeat each column
+   purrr::map(dplyr::as_data_frame) %>% 
+   dplyr::bind_rows() %>% 
+   dplyr::group_by(network_from, network_to) %>% 
+   dplyr::mutate(initial_amount = 1:number_of_times) %>% # Fill each column from 1 to the maximum number
+   purrr::pmap_df(momo_value_for_money) %>% 
+   dplyr::group_by(Mobile_Money_Service) %>% 
+   dplyr::mutate(initial_amount = 2:number_of_times, percentage = (initial_amount - withdrawn_amount)/initial_amount) %>% # Redo this as it starts from 2, must be on
+   dplyr::ungroup() %>% 
+   dplyr::group_by(initial_amount) %>%  
+   dplyr::mutate(highest_percentage = max(percentage), lowest_percentage = min(percentage), mean_percentage = mean(percentage)) %>% 
+   dplyr::ungroup() %>% 
+   ggplot(aes(initial_amount, percentage)) + 
+   geom_line(aes(color = Mobile_Money_Service), size = 1.5) + 
+   #geom_line(aes(x = initial_amount, y = highest_percentage), color = "black", size = 2) +
+   #geom_line(aes(x = initial_amount, y = lowest_percentage), color = "black", size = 2) +
+   geom_line(aes(x = initial_amount, y = mean_percentage), color = "red", size = 2) +
+   geom_vline(xintercept = 375, color = "black", linetype = 1, size = 1.5) +
+   geom_point(aes(x = 375, y = upper_fee_boundary), color = "black", size = 4)  +
+   geom_point(aes(x = 375, y = lower_fee_boundary), color = "black", size = 4)  +
+   geom_curve(aes(xend = 385, yend = upper_fee_boundary + 0.001, y = 0.0325, x = 625), arrow = arrow(ends = "last", length = unit(0.03, "npc"), type = "closed"), size = 1, curvature = .4) +
+   geom_curve(aes(xend = 385, yend = lower_fee_boundary - 0.001, y = 0.005, x = 625), arrow = arrow(ends = "last", length = unit(0.03, "npc"), type = "closed"), size = 1, curvature = -.4) +
+   #scale_y_continuous(limits = c(0, .5)) + 
+   #scale_color_viridis_d() + 
+   #geom_smooth(method = "loess", se = FALSE, color = "red", size = 2) +
+   scale_color_manual(
+     values = c("Vodafone Cash to Vodafone Cash" = "dimgrey",
+                "Vodafone Cash to MTN Momo" = "dimgrey",
+                "Vodafone Cash to AirtelTigo Money" = "dimgrey",
+                "MTN Momo to Vodafone Cash" = "dimgrey",
+                "MTN Momo to MTN Momo" = "dimgrey",
+                "MTN Momo to AirtelTigo Money" = "dimgrey",
+                "AirtelTigo Money to Vodafone Cash" = "dimgrey",
+                "AirtelTigo Money to MTN Momo" = "dimgrey",
+                "AirtelTigo Money to AirtelTigo Money" = "dimgrey")
+   ) + 
+   annotate(geom = "text", x = 505, y = 0.022, label = "Average Fees", color = "red") +
+   annotate(geom = "text", x = 650, y = 0.0325, label = glue::glue(round({upper_fee_boundary*100}, digits = 1), "%")) +
+   annotate(geom = "text", x = 650, y = 0.005, label = glue::glue(round({lower_fee_boundary*100}, digits = 1), "%")) +
+   theme_minimal() + 
+   theme(legend.position = "none") +
+   labs(y = "Percentage Paid in Fees", x = "Transfer Amount (GHc)", title = "Mobile Money Fee Structure", caption = "By: David Quartey (@DaveQuartey)\nSource: AirtelTigo, MTN, Vodafone") +
+    scale_y_continuous(labels = function(x){ paste0(round(x * 100, 0), "%")}, limits = c(0, 0.05), expand = c(0, 0))
+ 
+```
+
+Considering each network combination and their transfer + cash out fees, mobile money products in Ghana are regressive in structure too. This shows with the average fees paid downward trend as the amount increases. This means that at lower amounts, users are paying more in fees in percentage terms compared to higher amounts. This is important because, low-income people, the unbanked, and people new to the platform will most likely send low amounts and so, they will most likely be paying more in percentage terms compared to people who send higher amounts.
+
+Looking at how Telco's in Ghana structure their mobile money prices, the higher fees could partly be as a result of how amounts within the 1 - 50 range are charged flat rates. Currently, all 3 Telco's in Ghana who provide this service charge flat rates for the GHc1-GHc50 band. As [noted](http://www.cgap.org/blog/how-do-mobile-money-fee-structures-impact-poor), this way of pricing has its benefits because a flat rate probably takes consideration for people with low numeracy skills to understand how much they are charged. However, it ends up being a lot in percentage terms at such low amounts.
+
+### What does this all mean?
+```{r mobile money fee structure, echo=FALSE, fig.align="center", fig.height=9, fig.width=9, message=FALSE, warning=FALSE}
+
+sub_data <- dplyr::bind_rows(across_network_permutations, same_network_permutations) %>% 
+  data.frame(initial_amount = rep(initial_amount, nrow(.))) %>% 
+  purrr::pmap_df(momo_value_for_money) %>% 
+  unique() %>% 
+  dplyr::mutate( x = 1010 - .0018,
+                 y = dplyr::case_when(Mobile_Money_Service == "Vodafone Cash to Vodafone Cash" ~ 0.00850 - .0018,
+                                      Mobile_Money_Service == "Vodafone Cash to MTN Momo" ~ 0.0250 - .0018,
+                                      Mobile_Money_Service == "Vodafone Cash to AirtelTigo Money" ~ 0.0175 - .0018,
+                                      Mobile_Money_Service == "MTN Momo to Vodafone Cash" ~ 0.0210 - .0018,
+                                      Mobile_Money_Service == "MTN Momo to MTN Momo" ~ 0.0199 - .0018,
+                                      Mobile_Money_Service == "MTN Momo to AirtelTigo Money" ~ 0.0175 - .0018,
+                                      Mobile_Money_Service == "AirtelTigo Money to Vodafone Cash" ~ 0.0210 - .0018,
+                                      Mobile_Money_Service == "AirtelTigo Money to MTN Momo" ~ 0.0248 - .0018,
+                                      Mobile_Money_Service == "AirtelTigo Money to AirtelTigo Money" ~ 0.00500 - .0018), 
+                 breaks = dplyr::case_when(Mobile_Money_Service == "Vodafone Cash to Vodafone Cash" ~ paste0(round(0.00850 * 100, 1), "%"),
+                                           Mobile_Money_Service == "MTN Momo to MTN Momo" ~ paste0(round(0.0199 * 100, 1), "%"),
+                                           Mobile_Money_Service == "Vodafone Cash to AirtelTigo Money" ~ paste0(round(0.0175 * 100, 1), "%"),
+                                           Mobile_Money_Service == "MTN Momo to Vodafone Cash" ~ paste0(round(0.0210 * 100, 1), "%"),
+                                           Mobile_Money_Service == "Vodafone Cash to MTN Momo" ~ paste0(round(0.025 * 100, 1), "%"),
+                                           Mobile_Money_Service == "MTN Momo to AirtelTigo Money" ~ paste0(round(0.0175 * 100, 1), "%"),
+                                           Mobile_Money_Service == "AirtelTigo Money to Vodafone Cash" ~ paste0(round(0.0210 * 100, 1), "%"),
+                                           Mobile_Money_Service == "AirtelTigo Money to MTN Momo" ~ paste0(round(0.0248 * 100, 1), "%"),
+                                           Mobile_Money_Service == "AirtelTigo Money to AirtelTigo Money" ~ paste0(round(0.00500 * 100, 1), "%")))
+
+
+across_network_permutations <- gtools::permutations(n = 3, r = 2, v = c("Vodafone Cash", "MTN Momo", "AirtelTigo Money")) %>% 
+   data.frame(stringsAsFactors = F) %>% 
+   dplyr::rename(network_from = X1, network_to = X2)
+ 
+ same_network_permutations <- data.frame(network_from = c("Vodafone Cash", "MTN Momo", "AirtelTigo Money"), network_to = c("Vodafone Cash", "MTN Momo", "AirtelTigo Money"), stringsAsFactors = FALSE)
+ 
+ all_network_permutations <- dplyr::bind_rows(across_network_permutations, same_network_permutations)
+
+momo_fee_structure_ends <- all_network_permutations %>% 
+  split(.$network_from) %>% 
+  purrr::map(~purrr::map(.x,.f = ~rep(.x, number_of_times))) %>% # number of times to repeat each column
+  purrr::map(dplyr::as_data_frame) %>% 
+  dplyr::bind_rows() %>% 
+  dplyr::group_by(network_from, network_to) %>% 
+  dplyr::mutate(initial_amount = 1:number_of_times) %>% # Fill each column from 1 to the maximum number
+  purrr::pmap_df(momo_value_for_money) %>% 
+  dplyr::group_by(Mobile_Money_Service) %>% 
+  dplyr::mutate(initial_amount = 2:number_of_times, percentage = (initial_amount - withdrawn_amount)/initial_amount) %>% # Redo this as it starts from 2, must be on
+  dplyr::top_n(percentage,n = -1) %>% 
+  dplyr::pull(percentage)
+ 
+ 
+ number_of_times <- 1000
+ 
+ all_network_permutations %>% 
+   split(.$network_from) %>% 
+   purrr::map(~purrr::map(.x,.f = ~rep(.x, number_of_times))) %>% # number of times to repeat each column
+   purrr::map(dplyr::as_data_frame) %>% 
+   dplyr::bind_rows() %>% 
+   dplyr::group_by(network_from, network_to) %>% 
+   dplyr::mutate(initial_amount = 1:number_of_times) %>% # Fill each column from 1 to the maximum number
+   purrr::pmap_df(momo_value_for_money) %>% 
+   dplyr::group_by(Mobile_Money_Service) %>% 
+   dplyr::mutate(initial_amount = 2:number_of_times, percentage = (initial_amount - withdrawn_amount)/initial_amount) %>% # Redo this as it starts from 2, must be on
+   ggplot(aes(initial_amount, percentage)) + 
+   geom_line(data = . %>% dplyr::ungroup() %>% dplyr::select(-Mobile_Money_Service), color = "gray90", size = 1) +
+   geom_line(aes(color = Mobile_Money_Service), size = 2) + 
+   scale_y_continuous(limits = c(0, 5)) + 
+   #scale_color_viridis_d()+
+   labs(y = "Percentage Paid in Fees", x = "Transfer Amount (GHc)", title = "Mobile Money Fee Structure", caption = "By: David Quartey (@DaveQuartey)\nSource: AirtelTigo, MTN, Vodafone") +
+   scale_y_continuous(labels = function(x){ paste0(round(x * 100, 0), "%")}, limits = c(0, 0.05)) +
+   scale_x_continuous(expand = c(0,0)) + 
+   theme_minimal() + 
+  facet_wrap(.~Mobile_Money_Service, scales = "free") + 
+   scale_color_manual(
+     values = c("Vodafone Cash to Vodafone Cash" = "firebrick4",
+                "Vodafone Cash to MTN Momo" = "dimgrey",
+                "Vodafone Cash to AirtelTigo Money" = "dimgrey",
+                "MTN Momo to Vodafone Cash" = "dimgrey",
+                "MTN Momo to MTN Momo" = "orange",
+                "MTN Momo to AirtelTigo Money" = "dimgrey",
+                "AirtelTigo Money to Vodafone Cash" = "dimgrey",
+                "AirtelTigo Money to MTN Momo" = "dimgrey",
+                "AirtelTigo Money to AirtelTigo Money" = "red")
+   ) + 
+   theme(legend.position = "none") + ggrepel::geom_text_repel(data = sub_data, aes(x = x, y = y, label = breaks), color = c("red", "dimgrey", "dimgrey", "dimgrey", "orange", "dimgrey", "dimgrey", "dimgrey", "firebrick4"))
+ 
+
+
+```
+
+Simply, users who send high amounts have good options (further expanded by interoperability), but if it's less it doesn't matter what network they use.
+
+If Government of Ghana has plans to tax mobile money transactions as being [reported](https://thebftonline.com/2018/business/companies/mtn-ghana-holds-2018-mobile-money-stakeholder-conference/), Telco's could consider looking at higher amount ranges (500 - 1000, 1000+) since these amounts generally pay lower fees in percentage terms, although it feels like the platform is still in its infancy.
+
+Hope you found this as interesting as I did putting it together. Thanks for reading.
+
+***
+
+Find the code used in this analysis [here](https://github.com/DavidQuartey/Mobile-Money-Price-Value-For-Money) and more of my content on my blog, [SimpleEconomics](https://medium.com/@DaveQuartey) where I interrogate topics I find interesting from a data perspective.
+
+I am always interested in getting involved in new projects or just connecting with others. Feel free to get in touch!
+email: davequartey (at) gmail (dot) com <- Reassess for LinkedIn
