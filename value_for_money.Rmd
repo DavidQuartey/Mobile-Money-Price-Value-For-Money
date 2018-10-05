@@ -3,9 +3,9 @@ title: "Mobile Money Value for Money"
 author: "David Quartey"
 date: "September 28, 2018"
 output:
-  word_document: default
   html_document:
-    keep_md: TRUE
+    keep_md: yes
+  word_document: default
 ---
 
 ```{r setup, include=FALSE}
