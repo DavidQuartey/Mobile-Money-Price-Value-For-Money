@@ -77,4 +77,4 @@ Hope you found this as interesting as I did putting it together. Thanks for read
 Find the code used in this analysis [here](https://github.com/DavidQuartey/Mobile-Money-Price-Value-For-Money) and more of my content on my blog, [SimpleEconomics](https://medium.com/@DaveQuartey) where I interrogate topics I find interesting from a data perspective.
 
 I am always interested in getting involved in new projects or just connecting with others. Feel free to get in touch!
-email: davequartey (at) gmail (dot) com <- Reassess for LinkedIn
+email: davequartey (at) gmail (dot) com
