@@ -8,7 +8,7 @@ September 28, 2018
 
 On 10^th^ May 2018, Mobile Money Interoperability was officially [launched](https://www.myjoyonline.com/business/2018/May-10th/bawumia-launches-mobile-money-payment-interoperability-system.php) in Ghana. This means that you can now transfer mobile money across networks at a fee.
 
-I wrote part of this piece a few days after the launch because interoperability brought up some interesting questions for me. Since then, significant things have happened within the space which meant I've had to re-analyse some portions. Transactions have gone from close to [3000](https://citinewsroom.com/2018/05/15/mobile-money-interoperability-scored-3000-transactions-on-first-day-ghipss/) on the first day. By end of August it had reach [800, 000 transactions](https://www.modernghana.com/news/882509/mobile-money-interoperability-hits-800000-transactions-re.html). Most importantly though, since then [AirtelTigo merged](http://www.airteltigo.com.gh/airteltigo-outlines-plans-for-mobile-financial-service-sector/) their mobile money platform.
+I wrote part of this piece a few days after the launch because interoperability brought up some interesting questions for me. Since then, significant things have happened within the space which meant I've had to re-analyse some portions. About [3000](https://citinewsroom.com/2018/05/15/mobile-money-interoperability-scored-3000-transactions-on-first-day-ghipss/) transactions were made on the first day. By end of August it had reached [800, 000 transactions](https://www.modernghana.com/news/882509/mobile-money-interoperability-hits-800000-transactions-re.html). Most importantly though, since then [AirtelTigo merged](http://www.airteltigo.com.gh/airteltigo-outlines-plans-for-mobile-financial-service-sector/) their mobile money platform.
 
 Some interesting questions this brought up for me at the time of the launch include, say a mobile money user wants to make a transaction, after factoring in cash in fees (if any), transfer fees, and the cash out fees, what is the final amount withdrawn? Or put another way, what 2 combination of networks allows the receiver to cash out at least cost in terms of fees? 
 
@@ -74,7 +74,6 @@ Hope you found this as interesting as I did putting it together. Thanks for read
 
 ***
 
-Find the code used in this analysis [here](https://github.com/DavidQuartey/Mobile-Money-Price-Value-For-Money) and more of my content on my blog, [SimpleEconomics](https://medium.com/@DaveQuartey) where I interrogate topics I find interesting from a data perspective.
+Find the code and data used in this analysis [here](https://github.com/DavidQuartey/Mobile-Money-Price-Value-For-Money) and more of my content on my blog, [SimpleEconomics](https://medium.com/@DaveQuartey) where I interrogate topics I find interesting from a data perspective.
 
 I am always interested in getting involved in new projects or just connecting with others. Feel free to get in touch!
-email: davequartey (at) gmail (dot) com
