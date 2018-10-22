@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
   fig.path = "Visualizations/Viz-"
 )
 
-
+# Load Libraries
 library(ggplot2)
 library(magrittr)
 library(purrr)
@@ -501,7 +501,7 @@ momo_withdrawal <- function(remaining_amount, withdrawal_fee , effect = c("flat"
 
 On 10^th^ May 2018, Mobile Money Interoperability was officially [launched](https://www.myjoyonline.com/business/2018/May-10th/bawumia-launches-mobile-money-payment-interoperability-system.php) in Ghana. This means that you can now transfer mobile money across networks at a fee.
 
-I wrote part of this piece a few days after the launch because interoperability brought up some interesting questions for me. Since then, significant things have happened within the space which meant I've had to re-analyse some portions. Transactions have gone from close to [3000](https://citinewsroom.com/2018/05/15/mobile-money-interoperability-scored-3000-transactions-on-first-day-ghipss/) on the first day. By end of August it had reach [800, 000 transactions](https://www.modernghana.com/news/882509/mobile-money-interoperability-hits-800000-transactions-re.html). Most importantly though, since then [AirtelTigo merged](http://www.airteltigo.com.gh/airteltigo-outlines-plans-for-mobile-financial-service-sector/) their mobile money platform.
+I wrote part of this piece a few days after the launch because interoperability brought up some interesting questions for me. Since then, significant things have happened within the space which meant I've had to re-analyse some portions. About [3000](https://citinewsroom.com/2018/05/15/mobile-money-interoperability-scored-3000-transactions-on-first-day-ghipss/) transactions were made on the first day. By end of August it had reached [800, 000 transactions](https://www.modernghana.com/news/882509/mobile-money-interoperability-hits-800000-transactions-re.html). Most importantly though, since then [AirtelTigo merged](http://www.airteltigo.com.gh/airteltigo-outlines-plans-for-mobile-financial-service-sector/) their mobile money platform.
 
 Some interesting questions this brought up for me at the time of the launch include, say a mobile money user wants to make a transaction, after factoring in cash in fees (if any), transfer fees, and the cash out fees, what is the final amount withdrawn? Or put another way, what 2 combination of networks allows the receiver to cash out at least cost in terms of fees? 
 
@@ -516,14 +516,7 @@ I find out this and more in this article.
 
 initial_amount <- 10
 
-
-across_network_permutations <- gtools::permutations(n = 3, r = 2, v = c("Vodafone Cash", "MTN Momo", "AirtelTigo Money")) %>% 
-  data.frame(stringsAsFactors = F) %>% 
-  dplyr::rename(network_from = X1, network_to = X2)
-
-same_network_permutations <- data.frame(network_from = c("Vodafone Cash", "MTN Momo", "AirtelTigo Money"), network_to = c("Vodafone Cash", "MTN Momo", "AirtelTigo Money"), stringsAsFactors = FALSE)
-
-all_network_permutations <- dplyr::bind_rows(across_network_permutations, same_network_permutations) %>% 
+all_network_permutations <- expand.grid(network_from = c("Vodafone Cash", "MTN Momo", "AirtelTigo Money"), network_to = c("Vodafone Cash", "MTN Momo", "AirtelTigo Money"), stringsAsFactors = FALSE) %>% 
   data.frame(initial_amount = rep(initial_amount, nrow(.))) %>% 
   purrr::pmap_df(momo_value_for_money)
   
@@ -568,13 +561,7 @@ Is it the same at larger amounts?
 initial_amount <- 1000
 
 
-across_network_permutations <- gtools::permutations(n = 3, r = 2, v = c("Vodafone Cash", "MTN Momo", "AirtelTigo Money")) %>% 
-  data.frame(stringsAsFactors = F) %>% 
-  dplyr::rename(network_from = X1, network_to = X2)
-
-same_network_permutations <- data.frame(network_from = c("Vodafone Cash", "MTN Momo", "AirtelTigo Money"), network_to = c("Vodafone Cash", "MTN Momo", "AirtelTigo Money"), stringsAsFactors = FALSE)
-
-all_network_permutations <- dplyr::bind_rows(across_network_permutations, same_network_permutations) %>% 
+all_network_permutations <- expand.grid(network_from = c("Vodafone Cash", "MTN Momo", "AirtelTigo Money"), network_to = c("Vodafone Cash", "MTN Momo", "AirtelTigo Money"), stringsAsFactors = FALSE) %>% 
   data.frame(initial_amount = rep(initial_amount, nrow(.))) %>% 
   purrr::pmap_df(momo_value_for_money)
   
@@ -608,9 +595,9 @@ Just so we see how over a period these fees divergence, lets looks at this scena
 
 initial_amount <- 1000
 
-all_network_permutations <- dplyr::bind_rows(across_network_permutations, same_network_permutations) %>% 
-    data.frame(initial_amount = rep(initial_amount, nrow(.))) %>% 
-    purrr::pmap_df(momo_value_for_money)
+all_network_permutations <- expand.grid(network_from = c("Vodafone Cash", "MTN Momo", "AirtelTigo Money"), network_to = c("Vodafone Cash", "MTN Momo", "AirtelTigo Money"), stringsAsFactors = FALSE) %>% 
+  data.frame(initial_amount = rep(initial_amount, nrow(.))) %>% 
+  purrr::pmap_df(momo_value_for_money)
   
  cum_fees_ends <-  all_network_permutations %>% 
     dplyr::mutate(fees_paid =initial_amount - withdrawn_amount) %>% 
@@ -673,13 +660,8 @@ Still, it's likely that the pre-interoperability rate for say MTN Momo to an unr
 I was curious to know how this translates to Ghana's Telco mobile money prices in terms of structure. 
 ```{r average prices, echo=FALSE, fig.align="center", fig.height=9, fig.width=9, warning=FALSE}
 
-across_network_permutations <- gtools::permutations(n = 3, r = 2, v = c("Vodafone Cash", "MTN Momo", "AirtelTigo Money")) %>% 
-   data.frame(stringsAsFactors = F) %>% 
-   dplyr::rename(network_from = X1, network_to = X2)
- 
- same_network_permutations <- data.frame(network_from = c("Vodafone Cash", "MTN Momo", "AirtelTigo Money"), network_to = c("Vodafone Cash", "MTN Momo", "AirtelTigo Money"), stringsAsFactors = FALSE)
- 
- all_network_permutations <- dplyr::bind_rows(across_network_permutations, same_network_permutations)
+
+all_network_permutations <- expand.grid(network_from = c("Vodafone Cash", "MTN Momo", "AirtelTigo Money"), network_to = c("Vodafone Cash", "MTN Momo", "AirtelTigo Money"), stringsAsFactors = FALSE) 
  
   number_of_times <- 1000
   
@@ -771,9 +753,9 @@ Looking at how Telco's in Ghana structure their mobile money prices, the higher 
 ### What does this all mean?
 ```{r mobile money fee structure, echo=FALSE, fig.align="center", fig.height=9, fig.width=9, message=FALSE, warning=FALSE}
 
-sub_data <- dplyr::bind_rows(across_network_permutations, same_network_permutations) %>% 
+sub_data <- expand.grid(network_from = c("Vodafone Cash", "MTN Momo", "AirtelTigo Money"), network_to = c("Vodafone Cash", "MTN Momo", "AirtelTigo Money"), stringsAsFactors = FALSE) %>% 
   data.frame(initial_amount = rep(initial_amount, nrow(.))) %>% 
-  purrr::pmap_df(momo_value_for_money) %>% 
+  purrr::pmap_df(momo_value_for_money)%>% 
   unique() %>% 
   dplyr::mutate( x = 1010 - .0018,
                  y = dplyr::case_when(Mobile_Money_Service == "Vodafone Cash to Vodafone Cash" ~ 0.00850 - .0018,
@@ -796,13 +778,7 @@ sub_data <- dplyr::bind_rows(across_network_permutations, same_network_permutati
                                            Mobile_Money_Service == "AirtelTigo Money to AirtelTigo Money" ~ paste0(round(0.00500 * 100, 1), "%")))
 
 
-across_network_permutations <- gtools::permutations(n = 3, r = 2, v = c("Vodafone Cash", "MTN Momo", "AirtelTigo Money")) %>% 
-   data.frame(stringsAsFactors = F) %>% 
-   dplyr::rename(network_from = X1, network_to = X2)
- 
- same_network_permutations <- data.frame(network_from = c("Vodafone Cash", "MTN Momo", "AirtelTigo Money"), network_to = c("Vodafone Cash", "MTN Momo", "AirtelTigo Money"), stringsAsFactors = FALSE)
- 
- all_network_permutations <- dplyr::bind_rows(across_network_permutations, same_network_permutations)
+all_network_permutations <- expand.grid(network_from = c("Vodafone Cash", "MTN Momo", "AirtelTigo Money"), network_to = c("Vodafone Cash", "MTN Momo", "AirtelTigo Money"), stringsAsFactors = FALSE)
 
 momo_fee_structure_ends <- all_network_permutations %>% 
   split(.$network_from) %>% 
@@ -865,7 +841,6 @@ Hope you found this as interesting as I did putting it together. Thanks for read
 
 ***
 
-Find the code used in this analysis [here](https://github.com/DavidQuartey/Mobile-Money-Price-Value-For-Money) and more of my content on my blog, [SimpleEconomics](https://medium.com/@DaveQuartey) where I interrogate topics I find interesting from a data perspective.
+Find the code and data used in this analysis [here](https://github.com/DavidQuartey/Mobile-Money-Price-Value-For-Money) and more of my content on my blog, [SimpleEconomics](https://medium.com/@DaveQuartey) where I interrogate topics I find interesting from a data perspective.
 
 I am always interested in getting involved in new projects or just connecting with others. Feel free to get in touch!
-email: davequartey (at) gmail (dot) com <- Reassess for LinkedIn
