@@ -4,7 +4,7 @@ I took a deep dive into Telco Mobile Money prices in Ghana to determine what int
 
 Find the full analysis [here](https://github.com/DavidQuartey/Mobile-Money-Price-Value-For-Money/blob/master/value_for_money.md).
 
-Mobile Money transaction fees sourced from [AirtelTigo Ghana](http://airteltigo.com.gh), [MTN Ghana](http://mtn.com.gh/) and [Vodafone Ghana](https://vodafone.com.gh/) can be found below. A csv file can be found [here](https://github.com/DavidQuartey/Mobile-Money-Price-Value-For-Money/blob/master/Sources/Data.csv).
+Mobile Money transaction fees sourced from [AirtelTigo Ghana](http://airteltigo.com.gh), [MTN Ghana](http://mtn.com.gh/) and [Vodafone Ghana](https://vodafone.com.gh/) can be found below. A csv file of the table below can be found [here](https://github.com/DavidQuartey/Mobile-Money-Price-Value-For-Money/blob/master/Sources/Data.csv).
 
 | Price Ranges                                                                      | MTN            |              | Vodafone       |              | AirtelTigo     |              |
 |-----------------------------------------------------------------------------------|----------------|--------------|----------------|--------------|----------------|--------------|
