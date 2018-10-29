@@ -15,6 +15,6 @@ Mobile Money transaction fees sourced from [AirtelTigo Ghana](http://airteltigo.
 | GHS 101 - GHS 250                                                                 | 1.50%          | 1%           | 1.50%          | 1            | 1.50%          | 1.5          |
 | GHS 251 - GHS 500                                                                 | 1.50%          | 1%           | 1.50%          | 2            | 1.50%          | 2            |
 | GHS 501 - GHS 1000                                                                | 1.50%          | 1%           | 1.50%          | 3            | 1.50%          | 2.5          |
-| GHS 1, 000 - GHS 5, 000                                                           |                |              | 15             |              | 15             |              |
+| GHS 1 000 - GHS 5 000                                                           |                |              | 15             |              | 15             |              |
 |                                                                                   |                |              |                |              |                |              |
 | * Range included to accommodate Vodafone's unique 50 -75/76 - 100 fee point split |                |              |                |              |                |              |
