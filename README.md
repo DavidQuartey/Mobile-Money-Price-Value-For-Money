@@ -2,10 +2,20 @@
 
 I took a deep dive into Telco Mobile Money prices in Ghana to determine what interoperability means for fees mobile money users pay, specifically low-income people.
 
-For reproducibility, I outline how Telco mobile money fees data was collected, tools used in analysis and the insights below.
+For reproducibility, I outline what inspired my analysis, how the Telco mobile money fees data was collected, tools used in analysis and the insights below.
+
+## Interesting questions to explore at the time of the mobile money interoperability launch include
+* Say a mobile money user wants to make a transaction, after factoring in cash in fees (if any), transfer fees, and the cash out fees, what is the final amount withdrawn? Or put another way, what 2 combination of networks allows the receiver to cash out at least cost in terms of fees?
+* Given that mobile money users can switch to any network since the market is not fragmented anymore, how competitive are interoperable transaction options to same network transactions?
+* What does interoperability mean for low-income people who typically send small amounts?
+
+## Function
+I created 3 functions:
+* `momo_value_for_money(network_from, network_to , initial_amount)` - It takes 3 arguments: the network the transfer is from, the network the transfer to going to and the amount being sent
+* `momo_transfer(initial_amount, transaction_fee , effect = c("flat", "percentage"))` - Computes the remaining 
+* `momo_withdrawal(remaining_amount, withdrawal_fee , effect = c("flat", "percentage")`
 
 ## Data Collection Details
-
 Mobile Money transaction fees data was sourced from [AirtelTigo Ghana](http://airteltigo.com.gh), [MTN Ghana](http://mtn.com.gh/) and [Vodafone Ghana](https://vodafone.com.gh/) and can be found below. 
 A `.csv` file of the table below can be found [here](https://github.com/DavidQuartey/Mobile-Money-Price-Value-For-Money/blob/master/Sources/Data.csv).
 
