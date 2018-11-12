@@ -9,7 +9,7 @@ For reproducibility, I outline what inspired my analysis, how the Telco mobile m
 * Given that mobile money users can switch to any network since the market is not fragmented anymore, how competitive are interoperable transaction options to same network transactions?
 * What does interoperability mean for low-income people who typically send small amounts?
 
-## Function
+## Functions & Files (TO DO)
 I created 3 functions:
 * `momo_value_for_money(network_from, network_to , initial_amount)` - It takes 3 arguments: the network the transfer is from, the network the transfer to going to and the amount being sent
 * `momo_transfer(initial_amount, transaction_fee , effect = c("flat", "percentage"))` - Computes the remaining 
