@@ -37,6 +37,6 @@ For each Network, I collected fees data on same network (on-net) and cross netwo
 
 I found that, users who send high amounts have relatively good options (further expanded by interoperability), but if it's less it doesn't matter what network they use.
 
-If Government of Ghana has plans to tax mobile money transactions as being reported, Telco's could consider looking at higher amount ranges (500 - 1000, 1000+) since these amounts generally pay lower fees in percentage terms, although it feels like the platform is still in its infancy.
+If Government of Ghana has plans to tax mobile money transactions as being [reported](https://thebftonline.com/2018/business/companies/mtn-ghana-holds-2018-mobile-money-stakeholder-conference/), Telco's could consider looking at higher amount ranges (500 - 1000, 1000+) since these amounts generally pay lower fees in percentage terms, although it feels like the platform is still in its infancy.
 
 Find the full analysis [here](https://github.com/DavidQuartey/Mobile-Money-Price-Value-For-Money/blob/master/value_for_money.md)
