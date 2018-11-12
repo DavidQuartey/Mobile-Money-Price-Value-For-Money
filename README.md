@@ -1,8 +1,8 @@
 # How Mobile Money Interoperability in Ghana affects fees Mobile Money Users Pay: Telco Price Analysis
 
-I took a deep dive into Telco Mobile Money prices in Ghana to determine what interoperability means for mobile money users, specifically low-income people. 
+I took a deep dive into Telco Mobile Money prices in Ghana to determine what interoperability means for fees mobile money users pay, specifically low-income people.
 
-Find the full analysis [here](https://github.com/DavidQuartey/Mobile-Money-Price-Value-For-Money/blob/master/value_for_money.md).
+## Data Collection Details
 
 Mobile Money transaction fees sourced from [AirtelTigo Ghana](http://airteltigo.com.gh), [MTN Ghana](http://mtn.com.gh/) and [Vodafone Ghana](https://vodafone.com.gh/) can be found below. A csv file of the table below can be found [here](https://github.com/DavidQuartey/Mobile-Money-Price-Value-For-Money/blob/master/Sources/Data.csv).
 
@@ -17,4 +17,17 @@ Mobile Money transaction fees sourced from [AirtelTigo Ghana](http://airteltigo.
 | GHS 501 - GHS 1000                                                                | 1.50%          | 1%           | 1.50%          | 3            | 1.50%          | 2.5          |
 | GHS 1 000 - GHS 5 000                                                           |                |              | 15             |              | 15             |              |
 |                                                                                   |                |              |                |              |                |              |
-| * Range included to accommodate Vodafone's unique 50 -75/76 - 100 fee point split |                |              |                |              |                |              |
+| * **Range included to accommodate Vodafone's unique 50 -75/76 - 100 fee point split** |                |              |                |              |                |              |
+
+
+## Tools
+* [R Programming Language](https://www.r-project.org/about.html)
+* [ggplot2](https://ggplot2.tidyverse.org/)
+* [magrittr](https://magrittr.tidyverse.org/)
+* [purrr](https://purrr.tidyverse.org/)
+* [dplyr](https://dplyr.tidyverse.org/)
+
+
+## Results
+Find the full analysis [here](https://github.com/DavidQuartey/Mobile-Money-Price-Value-For-Money/blob/master/value_for_money.md).
+
