@@ -9,12 +9,6 @@ For reproducibility, I outline what inspired my analysis, how the Telco mobile m
 * Given that mobile money users can switch to any network since the market is not fragmented anymore, how competitive are interoperable transaction options to same network transactions?
 * What does interoperability mean for low-income people who typically send small amounts?
 
-## Functions & Files (TO DO)
-I created 3 functions:
-* `momo_value_for_money(network_from, network_to , initial_amount)` - It takes 3 arguments: the network the transfer is from, the network the transfer to going to and the amount being sent
-* `momo_transfer(initial_amount, transaction_fee , effect = c("flat", "percentage"))` - Computes the remaining 
-* `momo_withdrawal(remaining_amount, withdrawal_fee , effect = c("flat", "percentage")`
-
 ## Data Collection Details
 Mobile Money transaction fees data was sourced from [AirtelTigo Ghana](http://airteltigo.com.gh), [MTN Ghana](http://mtn.com.gh/) and [Vodafone Ghana](https://vodafone.com.gh/) and can be found below. 
 A `.csv` file of the table below can be found [here](https://github.com/DavidQuartey/Mobile-Money-Price-Value-For-Money/blob/master/Sources/Data.csv).
@@ -41,6 +35,11 @@ For each Network, I collected fees data on same network (on-net) and cross netwo
 * [purrr](https://purrr.tidyverse.org/)
 * [dplyr](https://dplyr.tidyverse.org/)
 
+## Code (TO DO)
+I created 3 functions:
+* `momo_value_for_money(network_from, network_to , initial_amount)` - It takes 3 arguments: the network the transfer is from, the network the transfer to going to and the amount being sent
+* `momo_transfer(initial_amount, transaction_fee , effect = c("flat", "percentage"))` - Computes the remaining 
+* `momo_withdrawal(remaining_amount, withdrawal_fee , effect = c("flat", "percentage")`
 
 ## Insights
 ![alt text](https://github.com/DavidQuartey/Mobile-Money-Price-Value-For-Money/blob/master/Visualizations/Viz-mobile%20money%20fee%20structure-1.png)
