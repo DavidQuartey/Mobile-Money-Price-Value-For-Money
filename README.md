@@ -2,14 +2,14 @@
 
 I took a deep dive into Telco Mobile Money prices in Ghana to determine what interoperability means for fees mobile money users pay, specifically low-income people. Find the full analysis [here](https://github.com/DavidQuartey/Mobile-Money-Price-Value-For-Money/blob/master/value_for_money.md)
 
-For reproducibility, I outline what inspired my analysis, how the Telco mobile money fees data was collected, the code and tools used in the analysis and the insights below.
+For reproducibility, I outline what [inspired my analysis](https://github.com/DavidQuartey/Mobile-Money-Price-Value-For-Money#interesting-questions-to-explore-at-the-time-of-the-mobile-money-interoperability-launch-include), [how the Telco mobile money fees data was collected](https://github.com/DavidQuartey/Mobile-Money-Price-Value-For-Money#data-collection-details), the [code](https://github.com/DavidQuartey/Mobile-Money-Price-Value-For-Money#code) and [tools](https://github.com/DavidQuartey/Mobile-Money-Price-Value-For-Money#tools) used in the analysis and the [insights](https://github.com/DavidQuartey/Mobile-Money-Price-Value-For-Money#insights) below.
 
-## [Interesting questions to explore at the time of the mobile money interoperability launch include](https://github.com/DavidQuartey/Mobile-Money-Price-Value-For-Money#interesting-questions-to-explore-at-the-time-of-the-mobile-money-interoperability-launch-include)
+## Interesting questions to explore at the time of the mobile money interoperability launch include
 * Say a mobile money user wants to make a transaction, after factoring in cash in fees (if any), transfer fees, and the cash out fees, what is the final amount withdrawn? Or put another way, what 2 combination of networks allows the receiver to cash out at least cost in terms of fees?
 * Given that mobile money users can switch to any network since the market is not fragmented anymore, how competitive are interoperable transaction options to same network transactions?
 * What does interoperability mean for low-income people who typically send small amounts?
 
-## [Data Collection Details](https://github.com/DavidQuartey/Mobile-Money-Price-Value-For-Money#data-collection-details)
+## Data Collection Details
 Mobile Money transaction fees data was sourced from [AirtelTigo Ghana](http://airteltigo.com.gh), [MTN Ghana](http://mtn.com.gh/) and [Vodafone Ghana](https://vodafone.com.gh/) and can be found below. 
 A `.csv` file of the table below can be found [here](https://github.com/DavidQuartey/Mobile-Money-Price-Value-For-Money/blob/master/Sources/Data.csv).
 
@@ -28,14 +28,14 @@ A `.csv` file of the table below can be found [here](https://github.com/DavidQua
 
 For each Network, I collected fees data on same network (on-net) and cross network (off-net) mobile money transfers.                 Data was collected from GHS 1 - GHS 1000, however for networks which had price points beyond GHS 1 000 available, it was collected.
 
-## [Tools](https://github.com/DavidQuartey/Mobile-Money-Price-Value-For-Money#tools)
+## Tools
 * [R Programming Language](https://www.r-project.org/about.html)
   * [ggplot2](https://ggplot2.tidyverse.org/)
   * [magrittr](https://magrittr.tidyverse.org/)
   * [purrr](https://purrr.tidyverse.org/)
   * [dplyr](https://dplyr.tidyverse.org/)
 
-## [Code](https://github.com/DavidQuartey/Mobile-Money-Price-Value-For-Money#code)
+## Code
 * `momo_value_for_money(network_from, network_to , initial_amount)` - This function takes 3 arguments: the network the transfer is from, the network the transfer is going to and the amount being sent.
 It then returns a `data.frame` of the network combination and the amount withdrawn.
 
@@ -52,7 +52,7 @@ Within the `momo_value_for_money()` function, 2 functions operate:
 
 Each network combination amount is iteratively computed from 1 to 1000 using `purrr::pmap_df()`.
 
-## [Insights](https://github.com/DavidQuartey/Mobile-Money-Price-Value-For-Money#insights)
+## Insights
 ![alt text](https://github.com/DavidQuartey/Mobile-Money-Price-Value-For-Money/blob/master/Visualizations/Viz-mobile%20money%20fee%20structure-1.png)
 
 I found that, users who send high amounts have relatively good options (further expanded by interoperability), but if it's less it doesn't matter what network they use.
