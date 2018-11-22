@@ -1,6 +1,6 @@
 # How Mobile Money Interoperability in Ghana affects fees Mobile Money Users Pay: Telco Price Analysis
 
-I took a deep dive into Telco Mobile Money prices in Ghana to determine what interoperability means for fees mobile money users pay, specifically low-income people. Find the full analysis [here](https://github.com/DavidQuartey/Mobile-Money-Price-Value-For-Money/blob/master/value_for_money.md)
+I took a deep dive into Telco Mobile Money prices in Ghana to determine what interoperability means for fees mobile money users pay, specifically low-income people. Find the full analysis [here](https://github.com/DavidQuartey/Mobile-Money-Price-Value-For-Money/blob/master/value_for_money.md).
 
 For reproducibility, I outline what [inspired my analysis](https://github.com/DavidQuartey/Mobile-Money-Price-Value-For-Money#interesting-questions-to-explore-at-the-time-of-the-mobile-money-interoperability-launch-include), [how the Telco mobile money fees data was collected](https://github.com/DavidQuartey/Mobile-Money-Price-Value-For-Money#data-collection-details), the [code](https://github.com/DavidQuartey/Mobile-Money-Price-Value-For-Money#code) and [tools](https://github.com/DavidQuartey/Mobile-Money-Price-Value-For-Money#tools) used in the analysis and the [insights](https://github.com/DavidQuartey/Mobile-Money-Price-Value-For-Money#insights) below.
 
@@ -59,4 +59,4 @@ I found that, users who send high amounts have relatively good options (further 
 
 If Government of Ghana has plans to tax mobile money transactions as being [reported](https://thebftonline.com/2018/business/companies/mtn-ghana-holds-2018-mobile-money-stakeholder-conference/), Telco's could consider looking at higher amount ranges (500 - 1000, 1000+) since these amounts generally pay lower fees in percentage terms, although it feels like the platform is still in its infancy.
 
-Find the full analysis [here](https://github.com/DavidQuartey/Mobile-Money-Price-Value-For-Money/blob/master/value_for_money.md)
+Find the full analysis [here](https://github.com/DavidQuartey/Mobile-Money-Price-Value-For-Money/blob/master/value_for_money.md).
