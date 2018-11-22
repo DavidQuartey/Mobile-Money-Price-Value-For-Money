@@ -36,9 +36,8 @@ For each Network, I collected fees data on same network (on-net) and cross netwo
 * [dplyr](https://dplyr.tidyverse.org/)
 
 ## Code (TO DO)
-I created 3 functions:
 * `momo_value_for_money(network_from, network_to , initial_amount)` - It takes 3 arguments: the network the transfer is from, the network the transfer to going to and the amount being sent
-* `momo_transfer(initial_amount, transaction_fee , effect = c("flat", "percentage"))` - Computes the remaining 
+* `momo_transfer(initial_amount, transaction_fee , effect = c("flat", "percentage"))` - Computes the amount left tr
 * `momo_withdrawal(remaining_amount, withdrawal_fee , effect = c("flat", "percentage")`
 
 ## Insights
