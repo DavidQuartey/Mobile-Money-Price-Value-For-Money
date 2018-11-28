@@ -36,7 +36,7 @@ For each Network, I collected fees data on same network (on-net) and cross netwo
   * [dplyr](https://dplyr.tidyverse.org/)
 
 ## Code
-* `momo_value_for_money(network_from, network_to , initial_amount)` - This function takes 3 arguments: the network the transfer is from, the network the transfer is going to and the amount being sent.
+* `momo_value_for_money(network_from, network_to , initial_amount)` - This function takes 3 arguments: network the transfer is from, network the transfer is going to and amount being sent.
 It then returns a `data.frame` of the network combination and the amount withdrawn.
 
 Eg: `momo_value_for_money(network_from = "AirtelTigo Money", network_to = "Vodafone Cash", 10)`
