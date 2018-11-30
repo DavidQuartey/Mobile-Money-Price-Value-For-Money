@@ -50,7 +50,7 @@ Within the `momo_value_for_money()` function, 2 functions operate:
 1. `momo_transfer(initial_amount, transaction_fee , effect = c("flat", "percentage"))` - Computes the amount left after transafering. 
 2. `momo_withdrawal(remaining_amount, withdrawal_fee , effect = c("flat", "percentage")` - Computes the amount left after withdrawing.
 
-Each network combination amount is iteratively computed from 1 to 1000 using `purrr::pmap_df()`.
+Each network combination amount is iteratively computed from GHc1 to GHc1000 using `purrr::pmap_df()`.
 
 ## Insights
 ![alt text](https://github.com/DavidQuartey/Mobile-Money-Price-Value-For-Money/blob/master/Visualizations/Viz-mobile%20money%20fee%20structure-1.png)
