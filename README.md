@@ -26,7 +26,7 @@ A `.csv` file of the table below can be found [here](https://github.com/DavidQua
 |                                                                                   |                |              |                |              |                |              |
 | * **Range included to accommodate Vodafone's unique 50 -75/76 - 100 fee point split** |                |              |                |              |                |              |
 
-For each Network, I collected fees data on same network (on-net) and cross network (off-net) mobile money transfers.                 Data was collected from GHS 1 - GHS 1000, however for networks which had price points beyond GHS 1 000 available, it was collected.
+For each Network, I collected fees data on same network (on-net) and cross network (off-net) mobile money transfers.                 Data was collected from GHS 1 - GHS 1000, however for networks where price points beyond GHS 1 000 was available, it was also collected.
 
 ## Tools
 * [R Programming Language](https://www.r-project.org/about.html)
