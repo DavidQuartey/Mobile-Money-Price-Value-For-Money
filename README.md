@@ -28,6 +28,19 @@ A `.csv` file of the table below can be found [here](https://github.com/DavidQua
 
 For each Network, I collected fees data on same network (on-net) and cross network (off-net) mobile money transfers.                 Data was collected from GHS 1 - GHS 1000, however for networks where price points beyond GHS 1 000 was available, it was also collected.
 
+### Withdrawal Fees
+| Price Ranges | MTN | Vodafone | AirtelTigo |
+|------------------------------------------------------------------------------------|-----|----------|------------|
+| GHS 1 - GHS 50 | 0.5 | 0.5 | 0.8 |
+| GHS 51 - GHS 75 | 1% | 1.5 | 1.5 |
+| GHS 76 - GHS 100* | 1% | 1.5 | 1.5 |
+| GHS 101 - GHS 250 | 1% | 2.5 | 2.8 |
+| GHS 251 - GHS 500 | 1% | 4.0 | 4.0 |
+| GHS 501 - GHS 1000 | 1% | 6.0 | 6.0 |
+| GHS 1 000 - GHS 5 000 |  |  |  |
+|  |  |  |  |
+| *  **Range included to accommodate Vodafone's unique 50 -75/76 - 100 fee point split** |  |  |  |
+
 ## Tools
 * [R Programming Language](https://www.r-project.org/about.html)
   * [ggplot2](https://ggplot2.tidyverse.org/)
