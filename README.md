@@ -28,7 +28,7 @@ A `.csv` file of the table below can be found [here](https://github.com/DavidQua
 
 For each Network, I collected fees data on same network (on-net) and cross network (off-net) mobile money transfers.                 Data was collected from GHS 1 - GHS 1000, however for networks where price points beyond GHS 1 000 was available, it was also collected.
 
-### Withdrawal Fees
+##### Withdrawal Fees
 | Price Ranges | MTN | Vodafone | AirtelTigo |
 |------------------------------------------------------------------------------------|-----|----------|------------|
 | GHS 1 - GHS 50 | 0.5 | 0.5 | 0.8 |
