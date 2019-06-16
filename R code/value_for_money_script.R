@@ -41,7 +41,7 @@ momo_value_for_money <- function(network_from, network_to , initial_amount){ # A
       
     }
       
-      if(dplyr::between(initial_amount, 50.1, 75)){
+      if(dplyr::between(initial_amount, 50.000000000000000000001, 75)){
         if(network_from == network_to){
           
           remaining_amount <- momo_transfer(initial_amount = initial_amount, transaction_fee = 0.75, effect = "flat")
@@ -57,7 +57,7 @@ momo_value_for_money <- function(network_from, network_to , initial_amount){ # A
         
       }
       
-    if(dplyr::between(initial_amount, 75.1, 100)){
+    if(dplyr::between(initial_amount, 75.000000000000000000001, 100)){
       if(network_from == network_to){
         
         remaining_amount <- momo_transfer(initial_amount = initial_amount, transaction_fee = 1, effect = "flat")
@@ -73,7 +73,7 @@ momo_value_for_money <- function(network_from, network_to , initial_amount){ # A
         
     } 
     
-    if(dplyr::between(initial_amount, 100.1, 250)){
+    if(dplyr::between(initial_amount, 100.000000000000000000001, 250)){
         if(network_from == network_to){
           
           remaining_amount <- momo_transfer(initial_amount = initial_amount, transaction_fee = 1.5, effect = "flat")
@@ -89,7 +89,7 @@ momo_value_for_money <- function(network_from, network_to , initial_amount){ # A
         
     }
       
-    if(dplyr::between(initial_amount, 250.1, 500)){
+    if(dplyr::between(initial_amount, 250.000000000000000000001, 500)){
         if(network_from == network_to){
           
           remaining_amount <- momo_transfer(initial_amount = initial_amount, transaction_fee = 2.0, effect = "flat")
@@ -105,7 +105,7 @@ momo_value_for_money <- function(network_from, network_to , initial_amount){ # A
         
       }
       
-    if(dplyr::between(initial_amount, 500.1, 1000)){
+    if(dplyr::between(initial_amount, 500.000000000000000000001, 1000)){
         if(network_from == network_to){
           
           remaining_amount <- momo_transfer(initial_amount = initial_amount, transaction_fee = 2.50, effect = "flat")
@@ -138,7 +138,7 @@ momo_value_for_money <- function(network_from, network_to , initial_amount){ # A
         
       }
       
-      if(dplyr::between(initial_amount, 50.1, 100)){
+      if(dplyr::between(initial_amount, 50.000000000000000000001, 100)){
         if(network_from == network_to){
           
           remaining_amount <- momo_transfer(initial_amount = initial_amount, transaction_fee = 1.0, effect = "flat")
@@ -154,7 +154,7 @@ momo_value_for_money <- function(network_from, network_to , initial_amount){ # A
         
       } 
       
-      if(dplyr::between(initial_amount, 100.1, 250)){
+      if(dplyr::between(initial_amount, 100.000000000000000000001, 250)){
         if(network_from == network_to){
           
           remaining_amount <- momo_transfer(initial_amount = initial_amount, transaction_fee = 1.5, effect = "flat")
@@ -170,7 +170,7 @@ momo_value_for_money <- function(network_from, network_to , initial_amount){ # A
         
       }
       
-      if(dplyr::between(initial_amount, 250.1, 500)){
+      if(dplyr::between(initial_amount, 250.000000000000000000001, 500)){
         if(network_from == network_to){
           
           remaining_amount <- momo_transfer(initial_amount = initial_amount, transaction_fee = 2.0, effect = "flat")
@@ -186,7 +186,7 @@ momo_value_for_money <- function(network_from, network_to , initial_amount){ # A
         
       }
       
-      if(dplyr::between(initial_amount, 500.1, 1000)){
+      if(dplyr::between(initial_amount, 500.000000000000000000001, 1000)){
         if(network_from == network_to){
           
           remaining_amount <- momo_transfer(initial_amount = initial_amount, transaction_fee = 2.50, effect = "flat")
@@ -221,7 +221,7 @@ momo_value_for_money <- function(network_from, network_to , initial_amount){ # A
         
       }
       
-      if(dplyr::between(initial_amount, 50.1, 100)){
+      if(dplyr::between(initial_amount, 50.000000000000000000001, 100)){
         if(network_from == network_to){
           
           remaining_amount <- momo_transfer(initial_amount = initial_amount, transaction_fee = 1, effect = "percentage")
@@ -237,7 +237,7 @@ momo_value_for_money <- function(network_from, network_to , initial_amount){ # A
         
       } 
       
-      if(dplyr::between(initial_amount, 100.1, 250)){
+      if(dplyr::between(initial_amount, 100.000000000000000000001, 250)){
         
         if(network_from == network_to){
           
@@ -253,7 +253,7 @@ momo_value_for_money <- function(network_from, network_to , initial_amount){ # A
         
       }
       
-      if(dplyr::between(initial_amount, 250.1, 500)){
+      if(dplyr::between(initial_amount, 250.000000000000000000001, 500)){
         if(network_from == network_to){
           
           remaining_amount <- momo_transfer(initial_amount = initial_amount, transaction_fee = 1, effect = "percentage")
@@ -269,7 +269,7 @@ momo_value_for_money <- function(network_from, network_to , initial_amount){ # A
         
       }
       
-      if(dplyr::between(initial_amount, 500.1, 1000)){
+      if(dplyr::between(initial_amount, 500.000000000000000000001, 1000)){
         if(network_from == network_to){
           
           remaining_amount <- momo_transfer(initial_amount = initial_amount, transaction_fee = 1, effect = "percentage")
@@ -298,38 +298,38 @@ momo_value_for_money <- function(network_from, network_to , initial_amount){ # A
     if(dplyr::between(remaining_amount, 1, 50)){
       
         withdrawn_amount <- momo_withdrawal(remaining_amount = remaining_amount, withdrawal_fee = 0.5, effect = "flat")
-        return(data.frame(Mobile_Money_Service = paste(network_from, "to", network_to), withdrawn_amount = withdrawn_amount, stringsAsFactors = FALSE))
-    
+        #return(data.frame(Mobile_Money_Service = paste(network_from, "to", network_to), withdrawn_amount = withdrawn_amount, stringsAsFactors = FALSE))
+        return(withdrawn_amount)    
       
     }
     
     
-    if(dplyr::between(remaining_amount, 50.1, 100)){
+    if(dplyr::between(remaining_amount, 50.000000000000000000001, 100)){
       
       withdrawn_amount <- momo_withdrawal(remaining_amount = remaining_amount, withdrawal_fee = 1.5, effect = "flat")
-      return(data.frame(Mobile_Money_Service = paste(network_from, "to", network_to), withdrawn_amount = withdrawn_amount, stringsAsFactors = FALSE))
-      
+      #return(data.frame(Mobile_Money_Service = paste(network_from, "to", network_to), withdrawn_amount = withdrawn_amount, stringsAsFactors = FALSE))
+      return(withdrawn_amount)      
     } 
     
-    if(dplyr::between(remaining_amount, 100.1, 250)){
+    if(dplyr::between(remaining_amount, 100.000000000000000000001, 250)){
       
       withdrawn_amount <- momo_withdrawal(remaining_amount = remaining_amount, withdrawal_fee = 2.5, effect = "flat")
-      return(data.frame(Mobile_Money_Service = paste(network_from, "to", network_to), withdrawn_amount = withdrawn_amount, stringsAsFactors = FALSE))
-      
+      #return(data.frame(Mobile_Money_Service = paste(network_from, "to", network_to), withdrawn_amount = withdrawn_amount, stringsAsFactors = FALSE))
+      return(withdrawn_amount)      
     }
     
-    if(dplyr::between(remaining_amount, 250.1, 500)){
+    if(dplyr::between(remaining_amount, 250.000000000000000000001, 500)){
       
       withdrawn_amount <- momo_withdrawal(remaining_amount = remaining_amount, withdrawal_fee = 4.0, effect = "flat")
-      return(data.frame(Mobile_Money_Service = paste(network_from, "to", network_to), withdrawn_amount = withdrawn_amount, stringsAsFactors = FALSE))
-      
+      #return(data.frame(Mobile_Money_Service = paste(network_from, "to", network_to), withdrawn_amount = withdrawn_amount, stringsAsFactors = FALSE))
+      return(withdrawn_amount)      
     }
     
-    if(dplyr::between(remaining_amount, 500.1, 1000)){
+    if(dplyr::between(remaining_amount, 500.000000000000000000001, 1000)){
       
       withdrawn_amount <- momo_withdrawal(remaining_amount = remaining_amount, withdrawal_fee = 6.0, effect = "flat")
-      return(data.frame(Mobile_Money_Service = paste(network_from, "to", network_to), withdrawn_amount = withdrawn_amount, stringsAsFactors = FALSE))
-      
+      #return(data.frame(Mobile_Money_Service = paste(network_from, "to", network_to), withdrawn_amount = withdrawn_amount, stringsAsFactors = FALSE))
+      return(withdrawn_amount)      
     }
     
     
@@ -340,39 +340,39 @@ momo_value_for_money <- function(network_from, network_to , initial_amount){ # A
   if(network_to == "AirtelTigo Money"){ #### To AirtelTigo
     if(dplyr::between(remaining_amount, 1, 50)){
       
-      withdrawn_amount <- momo_withdrawal(remaining_amount = remaining_amount, withdrawal_fee = 0.5, effect = "flat")
-      return(data.frame(Mobile_Money_Service = paste(network_from, "to", network_to), withdrawn_amount = withdrawn_amount, stringsAsFactors = FALSE))
-      
+      withdrawn_amount <- momo_withdrawal(remaining_amount = remaining_amount, withdrawal_fee = 0.80, effect = "flat")
+      #return(data.frame(Mobile_Money_Service = paste(network_from, "to", network_to), withdrawn_amount = withdrawn_amount, stringsAsFactors = FALSE))
+      return(withdrawn_amount)      
       
     }
     
     
-    if(dplyr::between(remaining_amount, 50.1, 100)){
-      
-      withdrawn_amount <- momo_withdrawal(remaining_amount = remaining_amount, withdrawal_fee = 1, effect = "flat")
-      return(data.frame(Mobile_Money_Service = paste(network_from, "to", network_to), withdrawn_amount = withdrawn_amount, stringsAsFactors = FALSE))
-      
-    } 
-    
-    if(dplyr::between(remaining_amount, 100.1, 250)){
+    if(dplyr::between(remaining_amount, 50.000000000000000000001, 100)){
       
       withdrawn_amount <- momo_withdrawal(remaining_amount = remaining_amount, withdrawal_fee = 1.50, effect = "flat")
-      return(data.frame(Mobile_Money_Service = paste(network_from, "to", network_to), withdrawn_amount = withdrawn_amount, stringsAsFactors = FALSE))
+      #return(data.frame(Mobile_Money_Service = paste(network_from, "to", network_to), withdrawn_amount = withdrawn_amount, stringsAsFactors = FALSE))
+      return(withdrawn_amount)      
+    } 
+    
+    if(dplyr::between(remaining_amount, 100.000000000000000000001, 250)){
       
+      withdrawn_amount <- momo_withdrawal(remaining_amount = remaining_amount, withdrawal_fee = 2.80, effect = "flat")
+      #return(data.frame(Mobile_Money_Service = paste(network_from, "to", network_to), withdrawn_amount = withdrawn_amount, stringsAsFactors = FALSE))
+      return(withdrawn_amount)      
     }
     
-    if(dplyr::between(remaining_amount, 250.1, 500)){
+    if(dplyr::between(remaining_amount, 250.000000000000000000001, 500)){
       
-      withdrawn_amount <- momo_withdrawal(remaining_amount = remaining_amount, withdrawal_fee = 2.00, effect = "flat")
-      return(data.frame(Mobile_Money_Service = paste(network_from, "to", network_to), withdrawn_amount = withdrawn_amount, stringsAsFactors = FALSE))
-      
+      withdrawn_amount <- momo_withdrawal(remaining_amount = remaining_amount, withdrawal_fee = 4.00, effect = "flat")
+      #return(data.frame(Mobile_Money_Service = paste(network_from, "to", network_to), withdrawn_amount = withdrawn_amount, stringsAsFactors = FALSE))
+      return(withdrawn_amount)      
     }
     
-    if(dplyr::between(remaining_amount, 500.1, 1000)){
+    if(dplyr::between(remaining_amount, 500.000000000000000000001, 1000)){
       
-      withdrawn_amount <- momo_withdrawal(remaining_amount = remaining_amount, withdrawal_fee = 2.50, effect = "flat")
-      return(data.frame(Mobile_Money_Service = paste(network_from, "to", network_to), withdrawn_amount = withdrawn_amount, stringsAsFactors = FALSE))
-      
+      withdrawn_amount <- momo_withdrawal(remaining_amount = remaining_amount, withdrawal_fee = 6.00, effect = "flat")
+      #return(data.frame(Mobile_Money_Service = paste(network_from, "to", network_to), withdrawn_amount = withdrawn_amount, stringsAsFactors = FALSE))
+      return(withdrawn_amount)      
     }
     
     
@@ -383,41 +383,38 @@ momo_value_for_money <- function(network_from, network_to , initial_amount){ # A
     if(dplyr::between(remaining_amount, 1, 50)){
       
       withdrawn_amount <- momo_withdrawal(remaining_amount = remaining_amount, withdrawal_fee = 0.5, effect = "flat")
-      return(data.frame(Mobile_Money_Service = paste(network_from, "to", network_to), withdrawn_amount = withdrawn_amount, stringsAsFactors = FALSE))
-      
+      #return(data.frame(Mobile_Money_Service = paste(network_from, "to", network_to), withdrawn_amount = withdrawn_amount, stringsAsFactors = FALSE))
+      return(withdrawn_amount)      
       
     }
     
     
-    if(dplyr::between(remaining_amount, 50.1, 100)){
+    if(dplyr::between(remaining_amount, 50.000000000000000000001, 100)){
       
       withdrawn_amount <- momo_withdrawal(remaining_amount = remaining_amount, withdrawal_fee = 1, effect = "percentage")
-      return(data.frame(Mobile_Money_Service = paste(network_from, "to", network_to), withdrawn_amount = withdrawn_amount, stringsAsFactors = FALSE))
-      
+      #return(data.frame(Mobile_Money_Service = paste(network_from, "to", network_to), withdrawn_amount = withdrawn_amount, stringsAsFactors = FALSE))
+      return(withdrawn_amount)      
     } 
     
-    if(dplyr::between(remaining_amount, 100.1, 250)){
+    if(dplyr::between(remaining_amount, 100.000000000000000000001, 250)){
       
       withdrawn_amount <- momo_withdrawal(remaining_amount = remaining_amount, withdrawal_fee = 1, effect = "percentage")
-      return(data.frame(Mobile_Money_Service = paste(network_from, "to", network_to), withdrawn_amount = withdrawn_amount, stringsAsFactors = FALSE))
-      
+      #return(data.frame(Mobile_Money_Service = paste(network_from, "to", network_to), withdrawn_amount = withdrawn_amount, stringsAsFactors = FALSE))
+      return(withdrawn_amount)      
     }
     
-    if(dplyr::between(remaining_amount, 250.1, 500)){
+    if(dplyr::between(remaining_amount, 250.000000000000000000001, 500)){
       
       withdrawn_amount <- momo_withdrawal(remaining_amount = remaining_amount, withdrawal_fee = 1, effect = "percentage")
-      return(data.frame(Mobile_Money_Service = paste(network_from, "to", network_to), withdrawn_amount = withdrawn_amount, stringsAsFactors = FALSE))
-      
+      #return(data.frame(Mobile_Money_Service = paste(network_from, "to", network_to), withdrawn_amount = withdrawn_amount, stringsAsFactors = FALSE))
+      return(withdrawn_amount)      
     }
     
-    if(dplyr::between(remaining_amount, 500.1, 1000)){
+    if(dplyr::between(remaining_amount, 500.000000000000000000001, 1000)){
       
       withdrawn_amount <- momo_withdrawal(remaining_amount = remaining_amount, withdrawal_fee = 1, effect = "percentage")
-      return(data.frame(Mobile_Money_Service = paste(network_from, "to", network_to), withdrawn_amount = withdrawn_amount, stringsAsFactors = FALSE))
-      
-      return(data.frame(Mobile_Money_Service = paste(network_from, "to", network_to), withdrawn_amount = withdrawn_amount, stringsAsFactors = FALSE))
-      
-      
+      #return(data.frame(Mobile_Money_Service = paste(network_from, "to", network_to), withdrawn_amount = withdrawn_amount, stringsAsFactors = FALSE))
+      return(withdrawn_amount)
     }
     
     
@@ -912,5 +909,4 @@ momo_fee_structure_ends <- all_network_permutations %>%
    dplyr::mutate(mean_percentage = mean(percentage) , median_percentage = median(percentage)) %>% 
    dplyr::ungroup() %>% 
    ggplot(aes(initial_amount, mean_percentage)) + geom_line(color = "red") + geom_line(aes(initial_amount, median_percentage)) + ylim(c(0, 5))
- 
  
